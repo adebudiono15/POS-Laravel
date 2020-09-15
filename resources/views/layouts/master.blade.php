@@ -33,8 +33,11 @@
     <!-- Vendor or 3rd party style ends -->
 
     <!-- Customized template style mandatory -->
-    <link href="../assets/css/style-darkblue-dark.css" rel="stylesheet" id="stylelink">
+    <link href="{{ url('assets/css/style-darkblue-dark.css') }}" rel="stylesheet" id="stylelink">
     <!-- Customized template style ends -->
+
+    {{-- SELECT 2 --}}
+    <link href="{{ url('assets/css/select2.min.css') }}" rel="stylesheet" />
 
     @stack('css-style')
 </head>
@@ -60,18 +63,16 @@
 
     <!-- wrapper starts -->
     <div class="wrapper">
+
         <div class="content shadow-sm">
-
     @include('layouts.navbar')
-
     <!-- Main container starts -->
     @yield('content')
     <!-- Main container ends -->
-
-
         </div>
-    @include('layouts.footer')
+
     </div>
+    @include('layouts.footer')
     <!-- wrapper ends -->
 
     <!-- Theme style picker modal window and options -->
@@ -290,7 +291,7 @@
         </div>
     </div>
     <!-- Theme style picker modal window and options ends -->
-    @stack('js-library')
+    @stack('js-first')
     <!-- Global js mandatory -->
     <script src="{{ url('assets/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url('assets/js/popper.min.js') }}"></script>
@@ -335,7 +336,54 @@
     <script>
     </script>
     <!-- Customized page level js ends -->
-    @stack('script')
+
+    {{-- session --}}
+    <script src="{{ url('assets/js/sweat.js') }}"></script>
+    <script>
+        @if(Session::has('success'))
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Berhasil Menambah Data',
+        showConfirmButton: false,
+        timer: 2500
+        })
+        @endif
+
+        @if(Session::has('update'))
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Data Berhasil Diupdate',
+        showConfirmButton: false,
+        timer: 2500
+        })
+        @endif
+
+        @if(Session::has('delete'))
+        Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Data Berhasil Dihapus',
+        showConfirmButton: false,
+        timer: 2500
+        })
+        @endif
+
+        @if(Session::has('waring'))
+        Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Data Berhasil Dihapus',
+        showConfirmButton: false,
+        timer: 2500
+        })
+        @endif
+    </script>
+
+    {{-- select2 --}}
+    <script src="{{ url('assets/js/select2.js') }}"></script>
+    @stack('js-second')
 </body>
 
 <!-- Body ends -->

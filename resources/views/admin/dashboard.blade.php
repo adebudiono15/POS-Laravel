@@ -42,24 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card border-0 shadow-sm overflow-hidden mb-4">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-auto align-self-center">
-                            <div class="progress-summary">
-                                <p class="mb-0">60%<br><small><span class="d-block small text-template-primary">Global</span></small></p>
-                                <div class="circle-progress" id="circle-green"></div>
-                            </div>
-                        </div>
-                        <div class="col pl-0 ">
-                            <p class="mb-1">Awareness<span class="text-template-primary d-block small">Frequency</span></p>
-                            <h4 class="font-weight-light mb-0">76.98%</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+     
         <div class="col-12 col-md-6 col-lg-6 col-xl-3">
             <div class="card border-0 shadow-sm overflow-hidden mb-4">
                 <div class="card-body">
