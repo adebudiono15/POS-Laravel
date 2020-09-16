@@ -25,7 +25,7 @@
 
     <ul class="nav flex-column">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="{{ url("/pembelian") }}"><i class="material-icons icon">shopping_basket</i><span>Pembelian</span> </a>
+            <a class="nav-link dropdown-toggle" href="{{ url("/master-pembelian") }}"><i class="material-icons icon">shopping_basket</i><span>Pembelian</span> </a>
         </li>
     </ul>
 
@@ -35,13 +35,19 @@
             <a class="nav-link dropdown-toggle" href="javascript:void(0)"><i class="material-icons icon">library_books</i><span>Master</span> <i class="material-icons arrow">expand_more</i></a>
             <div class="nav flex-column">
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ route('customer') }}"><span>Customer</span></a>
-                </div>
-                <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{ route('barang') }}"><span>Barang</span></a>
                 </div>
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"><span>Supplier</span></a>
+                    <a class="nav-link dropdown-toggle" href="{{ route('customer') }}"><span>Customer</span></a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ route('kategori') }}"><span>Kategori</span></a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ route('supplier') }}"><span>Supplier</span></a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ route('satuan') }}"><span>Satuan</span></a>
                 </div>
             </div>
         </li>

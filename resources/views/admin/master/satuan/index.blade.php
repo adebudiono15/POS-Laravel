@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Master Barang')
+@section('title', 'Master Satuan')
 
 @section('content')
 <div class="container main-container" id="main-container">
@@ -26,30 +26,14 @@
             <table class="table datatable display responsive w-100">
                 <thead>
                     <tr>
-                        <th hidden><b>ID</b></th>
-                        <th class="all"><b>KODE BARANG</b></th>
-                        <th class="min-tablet"><b>SUPPLIER</b></th>
-                        <th class="min-tablet"><b>NAMA</b></th>
-                        <th class="min-desktop"><b>SATUAN</b></th>
-                        <th class="min-desktop"><b>KATEGORI</b></th>
-                        <th class="min-desktop"><b>STOCK</b></th>
-                        <th class="min-desktop"><b>BELI</b></th>
-                        <th class="min-desktop"><b>JUAL</b></th>
+                        <th class="all"><b>NAMA SATUAN</b></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($barang as $item)
+                    @foreach ($satuan as $item)
                     <tr>
-                        <td hidden>{{ $item->id }}</td>
-                        <td>DB{{ $item->kode_barang }}</td>
-                        <td>{{ $item->nama_supplier->nama_supplier }}</td>
-                        <td>{{ $item->nama_barang }}</td>
-                        <td>{{ $item->satuan }}</td>
-                        <td>{{ $item->kategori }}</td>
-                        <td>{{ $item->stock }}</td>
-                        <td class="text-right">{{ number_format($item->harga_beli,0) }}</td>
-                        <td class="text-right">{{ number_format($item->harga,0) }}</td>
+                        <td>{{ $item->nama_satuan }}</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle btn-sm btn-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +44,7 @@
                                     <a class="dropdown-item btn-edit" data-id="{{ $item->id }}" href="#">Edit</a>
 
                                     
-                                    <form action="{{ route('delete-barang', $item->id) }}"
+                                    <form action="{{ route('delete-satuan', $item->id) }}"
                                         id="delete{{ $item->id }}" method="post">
                                         @csrf
                                         @method('delete')
@@ -80,125 +64,34 @@
 
 {{-- modal insert --}}
 <div id="tambahData" class="modal hide fade" role="dialog" aria-labelledby="tambahDataLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
       <div class="modal-content" style="border-radius: 10px !important">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <div class="row ">
                     <div class="col-lg-12 col-md-12 text-center">
-                        <p class="mt-3 mb-1 text-white"><b>TAMBAH DATA BARANG</b></p>
+                        <p class="mt-3 mb-1 text-white"><b>TAMBAH DATA SATUAN</b></p>
                         <img src="{{ url('assets/img/logo-putih.png') }}" alt="" class="mt-4" width="100">
                     </div>
                 </div>
                 <br>
-                <form action="{{ route('save-barang') }}" method="post">
+                <form action="{{ route('save-satuan') }}" method="post">
                 @csrf
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group">
-                            <label for="nama_supplier_id" @error('nama_supplier_id') class="text-danger" @enderror>Nama Supplier @error('nama_supplier_id')
-                                | {{ $message }}
-                                @enderror</label>
-                           <select id="supplier" class="js-states form-control" style="width: 100%" name="nama_supplier_id">
-                            <option value=""></option>
-                           @foreach ($supplier as $item)
-                               <option value="{{ $item->id }}">{{ $item->nama_supplier }}</option>
-                           @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group ">
-                            <label for="stock" 
-                            @error('stock') class="text-danger" 
-                            @enderror>Stok
-                            @error('stock')
-                            | {{ $message }}
-                            @enderror</label>
-                            <input type="number" class="form-control" placeholder="-" style="height: 28px" name="stock" value="{{ old('stock') }}">
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row ">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-12 col-md-12">
                         <div class="form-group ">
-                            <label for="kode_barang" 
-                            @error('kode_barang') class="text-danger" 
-                            @enderror>Kode Barang
-                            @error('kode_barang')
+                            <label for="kategori" 
+                            @error('nama_satuan') class="text-danger" 
+                            @enderror>Nama Satuan
+                            @error('nama_satuan')
                             | {{ $message }}
                             @enderror</label>
-                            <input type="text" class="form-control" value="{{ $kode }}" style="height: 28px; background-color:grey;color:#fff;" readonly name="kode_barang" value="{{ old('kode_customer') }}">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group ">
-                            <label for="nama_barang" 
-                            @error('nama_barang') class="text-danger" 
-                            @enderror>Nama Barang
-                            @error('nama_barang')
-                            | {{ $message }}
-                            @enderror</label>
-                            <input type="text" class="form-control" placeholder="-" style="height: 28px" name="nama_barang" value="{{ old('nama_barang') }}">
+                            <input type="text" class="form-control" placeholder="-" style="height: 28px" name="nama_satuan" value="{{ old('nama_satuan') }}">
                         </div>
                     </div>
                 </div>
                
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group">
-                            <label for="kategori" @error('kategori') class="text-danger" @enderror>Kategori @error('kategori')
-                                | {{ $message }}
-                                @enderror</label>
-                           <select id="kategori" class="js-states form-control" style="width: 100%" name="kategori">
-                            <option value=""></option>
-                           @foreach ($kategori as $item)
-                               <option value="{{ $item->kategori }}">{{ $item->kategori }}</option>
-                           @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group">
-                            <label for="satuan" @error('satuan') class="text-danger" @enderror>Satuan @error('satuan')
-                                | {{ $message }}
-                                @enderror</label>
-                           <select id="single" class="js-states form-control" style="width: 100%" name="satuan">
-                            <option value=""></option>
-                           @foreach ($satuan as $item)
-                               <option value="{{ $item->nama_satuan }}">{{ $item->nama_satuan }}</option>
-                           @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-               
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group ">
-                            <label for="harga_beli" 
-                            @error('harga_beli') class="text-danger" 
-                            @enderror>Harga Beli
-                            @error('harga_beli')
-                            | {{ $message }}
-                            @enderror</label>
-                            <input type="number" class="form-control" placeholder="-" style="height: 28px" name="harga_beli" value="{{ old('harga_beli') }}">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group ">
-                            <label for="harga" 
-                            @error('harga') class="text-danger" 
-                            @enderror>Harga Jual
-                            @error('harga')
-                            | {{ $message }}
-                            @enderror</label>
-                            <input type="number" class="form-control" placeholder="-" style="height: 28px" name="harga" value="{{ old('harga') }}">
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-sm btn-outline-template">
@@ -217,18 +110,18 @@
 
 {{-- modal edit --}}
 <div id="editModals" class="modal fade" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content" style="border-radius: 10px !important">
           <div class="card border-0 shadow-sm">
               <div class="card-body">
                   <div class="row ">
                       <div class="col-lg-12 col-md-12 text-center">
-                          <p class="mt-3 mb-1 text-white"><b>UPDATE DATA BARANG</b></p>
+                          <p class="mt-3 mb-1 text-white"><b>UPDATE DATA SATUAN</b></p>
                           <img src="{{ url('assets/img/logo-putih.png') }}" alt="" class="mt-4" width="100">
                       </div>
                   </div>
                   <br>
-                  <form class="form form-vertical" method="post" id="form-edit" enctype="multipart/form-data" action="{{ route('save-barang') }}">
+                  <form class="form form-vertical" method="post" id="form-edit" enctype="multipart/form-data" action="{{ route('save-satuan') }}">
                     @csrf
                   <div class="modal-body">
 
@@ -251,20 +144,6 @@
 
 @push('js-second')
 <script>
-    $("#single").select2({
-        placeholder: "Pilih Satuan Barang",
-        allowClear: true
-    });
-    $("#kategori").select2({
-        placeholder: "Pilih Kategori Barang",
-        allowClear: true
-    });
-    $("#supplier").select2({
-        placeholder: "Pilih Supplier",
-        allowClear: true
-    });
-  </script>
-<script>
     'use strict'
     $(document).ready(function() {
         /* data Table */
@@ -273,7 +152,7 @@
             'searching': true,
             "bLengthChange": true,
             "pageLength": 10,
-            "order": [[ 0, "desc" ]],
+            "order": [[ 0, "asc" ]],
         });
     });
 
@@ -322,7 +201,7 @@
             // console.log($(this).data('id'))
             let id = $(this).data('id')
             $.ajax({
-                url: `/${id}/edit-barang`,
+                url: `/${id}/edit-satuan`,
                 method: "GET",
                 success: function(data) {
                     // console.log(data)
@@ -341,23 +220,23 @@
             let formData = $('#form-edit').serialize()
             console.log(formData)
             $.ajax({
-                url: `/barang/update/${id}`,
+                url: `/satuan/update/${id}`,
                 method: "PATCH",
                 data:formData,
 
                 success: function(data) {
                     // console.log(data)
                     $('#editModals').modal('hide')
-                    window.location.assign('/master-barang')
+                    window.location.assign('/master-satuan')
                 },
                  error: function(err) {
                     console.log(err.responseJSON)
                     let err_log = err.responseJSON.errors;
                     if (err.status == 422){
                         if (typeof(err_log.kode_customer) !== 'undefined'){
-                            $('#editModals').find('[name="kode_barang"]').prev().html('<span style="color:red">Kode Barang | '+err_log.kode_barang[0]+'</span>')
+                            $('#editModals').find('[name="nama_satuan"]').prev().html('<span style="color:red">Kode Barang | '+err_log.nama_satuan[0]+'</span>')
                         }else{
-                            $('#editModals').find('[name="kode_barang"]').prev().html('<span>Kode Customer</span>')
+                            $('#editModals').find('[name="nama_satuan"]').prev().html('<span>nama_satuan</span>')
                         }
 
                     }

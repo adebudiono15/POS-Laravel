@@ -29,6 +29,7 @@
             <table class="table datatable display responsive w-100">
                 <thead>
                     <tr>
+                        <th hidden><b>ID</b></B></th>
                         <th class="all"><b>KODE CUSTOMER</b></B></th>
                         <th class="min-tablet"><b>NAMA</b></th>
                         <th class="min-desktop"><b>TELEPON</b></th>
@@ -39,6 +40,7 @@
                 <tbody>
                     @foreach ($customer as $item)
                     <tr>
+                        <td hidden>{{ $item->id }}</td>
                         <td>DC{{ $item->kode_customer }}</td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->telepon }}</td>
@@ -95,7 +97,7 @@
                             @error('kode_customer')
                             | {{ $message }}
                             @enderror</label>
-                            <input type="text" class="form-control" value="{{ $kode }}" style="height: 28px" readonly name="kode_customer" value="{{ old('kode_customer') }}">
+                            <input type="text" class="form-control" value="{{ $kode }}" style="height: 28px;background-color:grey;color:#fff;" readonly name="kode_customer" value="{{ old('kode_customer') }}">
                         </div>
                     </div>
                 </div>
@@ -191,12 +193,9 @@
         $('.datatable').DataTable({
             'responsive': true,
             'searching': true,
-            "bLengthChange": false,
+            "bLengthChange": true,
             "pageLength": 10,
-            "columnDefs": [{
-                "targets": 4,
-                "orderable": true
-            }],
+            "order": [[ 0, "desc" ]],
         });
     });
 

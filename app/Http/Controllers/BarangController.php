@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use App\Models\Kategori;
 use App\Models\Satuan;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -15,11 +17,12 @@ class BarangController extends Controller
         $request->validate([
         'kode_barang' => 'unique:barang',
         'nama_barang' => 'required',
+        'nama_supplier_id' => 'required',
         'satuan' => 'required',
         'harga' => 'required',
         ],
         [
-        'nama.required' => 'Tidak Boleh Kosong',
+        'nama_supplier_id.required' => 'Tidak Boleh Kosong',
         'nama_barang.required' => 'Tidak Boleh Kosong',
         'satuan.required' => 'Tidak Boleh Kosong',
         'kode_barang.unique' => 'Kode Barang Sudah Ada Silahkan Reload Halaman',
@@ -29,24 +32,30 @@ class BarangController extends Controller
     public function index(){
         $barang = Barang::get();
         $satuan = Satuan::all();
+        $kategori = Kategori::all();
+        $supplier = Supplier::all();
         $kode = rand(001, 999);
 
-        return view ('admin.master.barang.index', compact('barang','kode', 'satuan'));
+        return view ('admin.master.barang.index', compact('barang','kode', 'satuan','kategori','supplier'));
     }
 
     public function save(Request $request){
         $this->_validation($request);
         $barang = new Barang;
 
+        $barang->nama_supplier_id = $request->nama_supplier_id;
         $barang->kode_barang = $request->kode_barang;
+        $barang->stock = $request->stock;
         $barang->nama_barang = $request->nama_barang;
         $barang->satuan = $request->satuan;
+        $barang->kategori = $request->kategori;
         $barang->harga = $request->harga;
+        $barang->harga_beli = $request->harga_beli;
 
+        // dd($request->all());
         $barang->save();
         Session::flash('success');
         return redirect('master-barang');
-        // dd($request->all());
     }
 
     public function edit($id)

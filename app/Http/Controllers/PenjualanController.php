@@ -74,6 +74,13 @@ class PenjualanController extends Controller
                         'satuan_id' => $satuan_id[$e],
                         'grand_total' => (int)$qty[$e] * (int) $harga[$e]
                     ]);
+
+                    $dt = Barang::find($nm);
+                    $qty_now = $dt->stock;
+                    $qty_new = $qty_now - $qty[$e];
+                    Barang::where('id', $nm)->update([
+                        'stock'=>$qty_new
+                    ]);
                 }
 
                 $sum_total = PenjualanLine::where('penjualan', $header)->sum('grand_total');
@@ -115,68 +122,3 @@ class PenjualanController extends Controller
     return redirect()->back();
     }
 }
-
-// public function show()
-// {
-//     $penjualan_tunai = PenjualanTunai::all();
-//     $customer = Customer::get();
-//     $harga = Harga::get();
-//     $satuan = Satuan::get();
-//     $sales_line = Sales_line::get();
-//     $sales = Sales::get();
-//     $kategori_customer = KategoriCustomer::get();
-//     $barang = Barang::get();
-
-//     $super_agen = $customer->where('kategori_id', 1);
-//     $agen = $customer->where('kategori_id', 2);
-//     $distributor = $customer->where('kategori_id', 3);
-//     $reseller = $customer->where('kategori_id', 4);
-//     $private = $customer->where('kategori_id', 5);
-//     $vip = $customer->where('kategori_id', 6);
-
-
-//     // dd($super_agen);
-
-
-//     $sales = Sales::withCount('lines')->orderBy('created_at', 'desc')->get();
-
-
-//     return view('admin.transaksi.tunai.penjualan', compact('super_agen', 'agen', 'distributor', 'reseller', 'private', 'sales', 'sales_line', 'penjualan_tunai', 'barang', 'harga', 'customer', 'kategori_customer', 'satuan', 'vip'));
-// }
-
-// public function transaksi()
-// {
-//     $customer = Customer::get();
-//     $barang = Barang::get();
-//     $harga = Harga::get();
-//     $satuan = Satuan::get();
-//     $kategori_customer = KategoriCustomer::get();
-//     $transaksi_sementara = Transaksi::all();
-
-//     return view('admin.transaksi.tunai.transaksi', compact('barang', 'harga', 'customer', 'kategori_customer', 'satuan', 'transaksi_sementara'));
-// }
-
-// public function get_barang($kode_barang)
-// {
-//     $brg = Barang::where('kode_barang', $kode_barang)->first();
-
-//     return response()->json([
-//         'data' => $brg
-//     ]);
-// }
-
-// public function get_customer($kode_customer)
-// {
-//     $cst = Customer::where('kode_customer', $kode_customer)->first();
-
-//     return response()->json([
-//         'data' => $cst
-//     ]);
-// }
-
-
-
-
-
-
-

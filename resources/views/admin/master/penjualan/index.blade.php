@@ -26,8 +26,9 @@
             <table class="table datatable display responsive w-100">
                 <thead>
                     <tr>
+                        <th hidden><b>ID</b></th>
                         <th class="min-desktop text-center"><b>TANGGAL</b></th>
-                        <th class="all"><b>INVOICE</b></th>
+                        <th class="all"><b>FAKTUR</b></th>
                         <th class="min-tablet"><b>CUSTOMER</b></th>
                         <th class="min-desktop"><b>GRAND TOTAL</b></th>
                         <th></th>
@@ -36,8 +37,9 @@
                 <tbody>
                     @foreach ($penjualan as $item)
                     <tr>
+                        <td hidden>{{ $item->id }}</td>
                         <td class="text-center">{{ date('d M Y', strtotime ($item->created_at)) }}</td>
-                        <td>INV{{ date('dmYHis', strtotime ($item->created_at)) }}</td>
+                        <td>DF{{ date('dmYHis', strtotime ($item->created_at)) }}</td>
                         <td>{{ $item->nama_customer }}</td>
                         <td class="text-right">Rp. {{ number_format($item->grand_total,0) }}</td>
                         <td>
@@ -109,7 +111,7 @@
                             <div class="form-group">
                                 <label for="no_struk" 
                                 @error('no_struk') class="text-danger" 
-                                @enderror>ID INV
+                                @enderror>ID FAKTUR
                                 @error('no_struk')
                                 | {{ $message }}
                                 @enderror</label>
@@ -299,12 +301,9 @@
         $('.datatable').DataTable({
             'responsive': true,
             'searching': true,
-            "bLengthChange": false,
+            "bLengthChange": true,
             "pageLength": 10,
-            "columnDefs": [{
-                "targets": 4,
-                "orderable": true
-            }],
+            "order": [[ 0, "desc" ]],
         });
     });
 
