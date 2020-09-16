@@ -28,28 +28,40 @@
 
                         <!-- icons dropwdowns starts -->
                         <ul class="navbar-nav ml-auto">
-                           
+                            <?php
+                            $stock = \DB::select("SELECT * FROM barang where stock < 1");
+                            ?>
+                            <?php
+                            $minimal_stock = \DB::select("SELECT * FROM barang where stock < 10");
+                            ?>
                             <!-- cart dropdown-->
                             <li class="nav-item dropdown d-none d-sm-flex">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">local_mall</i>
+                                    @foreach ($minimal_stock as $item)
                                     <span class="counter-small bg-danger"></span>
+                                    @endforeach
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-center no-defaults pt-0 overflow-hidden" aria-labelledby="navbarDropdown3">
                                     <div class="dropdown-item border-top">
+                                        @foreach ($minimal_stock as $item)
+                                        <div class="col">
                                         <div class="row ">
-                                            
+                                            <p>Stock <b>{{ $item->nama_barang }}</b> kurang dari 10 lagi.</p>
                                         </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </li>
 
 
                             <!-- message dropdown-->
+                            
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">email</i>
-                                    <span class="counter bg-danger">1</span>
+                                    <span class="counter bg-danger">{{ count($stock) }}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-sm-left dropdown-menu-center no-defaults pt-0 overflow-hidden" aria-labelledby="navbarDropdown5">
                                     <div class="position-relative text-center rounded">
@@ -57,13 +69,14 @@
                                             <img src="../assets/img/background-part.png" alt="">
                                         </div>
                                         <div class="py-3 text-white">
-                                            <h5 class="font-weight-normal">Messages</h5>
-                                            <p>Updates and Status</p>
+                                            <h5 class="font-weight-normal">PESAN</h5>
+                                            <p>Update Stok Barang</p>
                                         </div>
 
                                     </div>
                                     <div class="scroll-y h-320 d-block">
                                         <a class="dropdown-item border-top new" href="#">
+                                            @foreach ($stock as $item)
                                             <div class="row">
                                                 <div class="col-auto align-self-center">
                                                     <i class="material-icons text-template-primary">local_mall</i>
@@ -71,12 +84,13 @@
                                                 <div class="col pl-0">
                                                     <div class="row mb-1">
                                                         <div class="col">
-                                                            <p class="mb-0">New Order received</p>
+                                                            <p class="mb-0">{{ $item->nama_barang }}</p>
                                                         </div>
                                                     </div>
-                                                    <p class="small text-mute">Order from Anand Mhatva recieved for Electronics with 6 quanity.</p>
+                                                    <p class="small text-mute">Stok {{ $item->nama_barang }} sudah habis. </p>
                                                 </div>
                                             </div>
+                                            @endforeach
                                         </a>
                                     </div>
                                 </div>
