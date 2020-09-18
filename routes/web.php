@@ -60,3 +60,20 @@ Route::get('master-pembelian-barang/{kode_Supplier}', 'PembelianController@get_b
 Route::post('simpan-pembelian', 'PembelianController@save')->name('save-pembelian');
 Route::delete('pembelian/{id}', 'PembelianController@delete')->name('delete-pembelian');
 Route::get('transaksi-pembelian/{id}', 'PembelianController@detail');
+
+// pernjualan kredit
+Route::get('/master-penjualan-kredit', 'PenjualanKreditController@index')->name('penjualan-kredit');
+Route::post('simpan-penjualan-kredit', 'PenjualanKreditController@save')->name('save-penjualan-kredit');
+Route::delete('penjualan-kredit/{id}', 'PenjualanKreditController@delete')->name('delete-penjualan-kredit');
+Route::get('transaksi-penjualan-kredit/{id}', 'PenjualanKreditController@detail');
+Route::put('transaksi-penjualan-kredit/{id}', 'PenjualanKreditController@update');
+
+// pembelian kredit
+Route::get('/master-pembelian-kredit', 'PembelianKreditController@index')->name('pembelian-kredit');
+Route::get('/master-pembelian-barang-kredit', 'PembelianKreditController@pembelian')->name('pembelian-barang-kredit');
+Route::get('master-pembelian-barang-kredit/{kode_Supplier}', 'PembelianKreditController@get_barang');
+Route::post('simpan-pembelian-kredit', 'PembelianKreditController@save')->name('save-pembelian-kredit');
+Route::get('transaksi-pembelian-kredit/{id}', 'PembelianKreditController@detail');
+Route::put('transaksi-pembelian-kredit/{id}', 'PembelianKreditController@update');
+Route::delete('pembelian-kredit/{id}', 'PembelianKreditController@delete')->name('delete-pembelian-kredit');
+

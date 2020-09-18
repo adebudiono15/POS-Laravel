@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePembelianLineTable extends Migration
+class CreatePembelianKreditTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePembelianLineTable extends Migration
      */
     public function up()
     {
-        Schema::create('pembelian_line', function (Blueprint $table) {
+        Schema::create('pembelian_kredit', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('no_struk');
+            $table->bigInteger('nama_supplier_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePembelianLineTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_pembelian_line');
+        Schema::dropIfExists('pembelian_kredit');
     }
 }

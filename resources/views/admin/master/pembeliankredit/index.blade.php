@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Pembelian Barang')
+@section('title', 'Pembelian Kredit Barang')
 
 @section('content')
 <div class="container main-container" id="main-container">
@@ -11,7 +11,7 @@
                     <p class="fs15">@yield('title')</p>
                 </div>
                 <div class="col-auto align-self-center">
-                   <a href="{{ route('pembelian-barang') }}"> 
+                   <a href="{{ route('pembelian-barang-kredit') }}"> 
                     <button class="btn btn-sm btn-outline-template ml-2">
                         <i class="material-icons md-18">note_add</i> Tambah Data
                     </button>
@@ -33,17 +33,31 @@
                         <th class="all"><b>FAKTUR</b></th>
                         <th class="min-tablet"><b>SUPPLIER</b></th>
                         <th class="min-tablet"><b>GRAND TOTAL</b></th>
+                        <th class="min-tablet"><b>STATUS</b></th>
+                        <th class="min-tablet"><b>SISA</b></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pembelian as $item)
+                    @foreach ($pembelian_kredit as $item)
                     <tr>
                         <td hidden>{{ $item->id }}</td>
                         <td class="text-center">{{ date('d M Y', strtotime ($item->created_at)) }}</td>
                         <td>DP{{ date('dmYHis', strtotime ($item->created_at)) }}</td>
                         <td>{{ $item->nama_supplier->nama_supplier }}</td>
                         <td class="text-right">Rp. {{  number_format($item->grand_total,0) }}</td>
+                        @if ($item->sisa > 1)
+                        <td class="text-center">BELUM LUNAS</td>
+                        @endif
+                        @if ($item->sisa == 0)
+                        <td class="text-center">LUNAS</td>
+                        @endif
+                        @if ($item->sisa > 1)
+                        <td class="text-right">Rp. {{  number_format($item->sisa,0) }}</td>
+                        @endif
+                        @if ($item->sisa == 0)
+                        <td class="text-center">LUNAS</td>
+                        @endif
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle btn-sm btn-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,10 +65,10 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
 
-                                    <a class="dropdown-item btn-edit" data-id="{{ $item->id }}" href="{{ url('transaksi-pembelian/'.$item->id) }}">Detail</a>
+                                    <a class="dropdown-item btn-edit" data-id="{{ $item->id }}" href="{{ url('transaksi-pembelian-kredit/'.$item->id) }}">Detail</a>
 
                                     
-                                    <form action="{{ route('delete-pembelian', $item->id) }}"
+                                    <form action="{{ route('delete-pembelian-kredit', $item->id) }}"
                                         id="delete{{ $item->id }}" method="post">
                                         @csrf
                                         @method('delete')

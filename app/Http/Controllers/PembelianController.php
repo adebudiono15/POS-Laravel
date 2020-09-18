@@ -76,7 +76,8 @@ class PembelianController extends Controller
                 $dt_barang = Barang::where('id', $barang[$e])->first();
                 $harga_beli = $dt_barang->harga_beli;
                 $grand_total = $qt * $harga_beli;
-    
+
+                
                 PembelianLine::insert([
                     'pembelian' =>$id_pembelian,
                     'barang' => $barang[$e],
@@ -84,12 +85,19 @@ class PembelianController extends Controller
                     'harga_beli' => $harga_beli,
                     'grand_total' => $grand_total,
                 ]);
-
+                
                 $stock_barang = Barang::where('id', $barang[$e])->first();
                 $qty_now = $stock_barang->stock;
                 $qty_new = $qty_now + $qty[$e];
                 Barang::where('id', $barang[$e])->update([
                     'stock'=>$qty_new
+                    ]);
+                    
+                $sum_total = PembelianLine::where('pembelian', $id_pembelian)->sum('grand_total');
+
+                Pembelian::where('id', $id_pembelian)->update([
+                    'nama' => $barang,
+                    'grand_total' => $sum_total,
                 ]);
                 
             }

@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Pembelian Barang')
+@section('title', 'Pembelian Kredit Barang')
 
 @section('content')
 <input type="hidden" name="grand_total" value="0">
-<form action="{{ route('save-pembelian') }}" method="post">
+<form action="{{ route('save-pembelian-kredit') }}" method="post">
 @csrf
 <div class="container main-container" id="main-container">
     <div class="card border-0 shadow-sm mb-4">
@@ -85,7 +85,7 @@
                         <td>{{ $e+1 }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ $item->satuan }}</td>
-                        <td class="text-right">{{ number_format($item->harga_beli,0) }}</td>
+                        <td>{{ number_format($item->harga_beli,0) }}</td>
                         <td hidden>{{ $item->stock }}</td>
                         <td>
                             <input type="hidden" class="form-control" name="barang[]" value="{{ $item->id }}">    
@@ -109,7 +109,7 @@
         console.log('select event');
 
         var kode_Supplier = $(this).val();
-        var url = "{{ url('master-pembelian-barang/') }}"+'/'+kode_Supplier;
+        var url = "{{ url('master-pembelian-barang-kredit/') }}"+'/'+kode_Supplier;
 
         window.location.href = url;
 

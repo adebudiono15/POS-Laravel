@@ -47,7 +47,7 @@
                                         @foreach ($minimal_stock as $item)
                                         <div class="col">
                                         <div class="row ">
-                                            <p>Stock <b>{{ $item->nama_barang }}</b> kurang dari 10 lagi.</p>
+                                            <p>Stock <b>{{ $item->nama_barang }}</b> tersisa {{ $item->stock }} lagi.</p>
                                         </div>
                                         </div>
                                         @endforeach

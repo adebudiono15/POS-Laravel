@@ -16,7 +16,7 @@
         </li>
     </ul>
 
-    <h6 class="subtitle fs11">TRANSAKSI</h6>
+    <h6 class="subtitle fs11">TRANSAKSI TUNAI</h6>
     <ul class="nav flex-column">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ url("/master-penjualan") }}"><i class="material-icons icon">attach_money</i><span>Penjualan</span> </a>
@@ -26,6 +26,19 @@
     <ul class="nav flex-column">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ url("/master-pembelian") }}"><i class="material-icons icon">shopping_basket</i><span>Pembelian</span> </a>
+        </li>
+    </ul>
+
+    <h6 class="subtitle fs11">TRANSAKSI KREDIT</h6>
+    <ul class="nav flex-column">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ url("/master-penjualan-kredit") }}"><i class="material-icons icon">add_shopping_cart</i><span>Penjualan</span> </a>
+        </li>
+    </ul>
+
+    <ul class="nav flex-column">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ url("/master-pembelian-kredit") }}"><i class="material-icons icon">store</i><span>Pembelian</span> </a>
         </li>
     </ul>
 
