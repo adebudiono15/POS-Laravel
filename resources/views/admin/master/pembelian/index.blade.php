@@ -103,13 +103,13 @@
                     })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Data Berhasil Dihapus',
-                        showConfirmButton: false,
-                        timer: 1800
-                        })
+                        // Swal.fire({
+                        // position: 'center',
+                        // icon: 'success',
+                        // title: 'Data Berhasil Dihapus',
+                        // showConfirmButton: false,
+                        // timer: 1800
+                        // })
                         $(`#delete${id}`).submit();
                     } else {
                         // swal("Data ini batal dihapus!");

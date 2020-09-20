@@ -87,7 +87,6 @@
                 <div class="row ">
                     <div class="col-lg-12 col-md-12 text-center">
                         <p class="mt-3 mb-1 text-white"><b>TAMBAH DATA BARANG</b></p>
-                        <img src="{{ url('assets/img/logo-putih.png') }}" alt="" class="mt-4" width="100">
                     </div>
                 </div>
                 <br>
@@ -224,7 +223,6 @@
                   <div class="row ">
                       <div class="col-lg-12 col-md-12 text-center">
                           <p class="mt-3 mb-1 text-white"><b>UPDATE DATA BARANG</b></p>
-                          <img src="{{ url('assets/img/logo-putih.png') }}" alt="" class="mt-4" width="100">
                       </div>
                   </div>
                   <br>
@@ -292,13 +290,13 @@
                     })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Data Berhasil Dihapus',
-                        showConfirmButton: false,
-                        timer: 1800
-                        })
+                        // Swal.fire({
+                        // position: 'center',
+                        // icon: 'success',
+                        // title: 'Data Berhasil Dihapus',
+                        // showConfirmButton: false,
+                        // timer: 1800
+                        // })
                         $(`#delete${id}`).submit();
                     } else {
                         // swal("Data ini batal dihapus!");

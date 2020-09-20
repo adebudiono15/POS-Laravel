@@ -92,10 +92,15 @@
       <div class="modal-content" style="border-radius: 10px !important">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
+                <div class="row ">
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <p class="mt-3 mb-1 text-white"><b>TAMBAH DATA PENJUALAN KREDIT</b></p>
+                    </div>
+                </div>
+                <br>
                 <input type="hidden" name="grand_total" value="0">
                 <form action="{{ route('save-penjualan-kredit') }}" method="post">
                 @csrf
-               
                 <div class="row ">
                     <div class="col-lg-6">
                         <div class="form-group">

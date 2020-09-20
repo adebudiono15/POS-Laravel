@@ -7,6 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//dashboard
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 // barang

@@ -10,7 +10,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Worlds Best Admin UX Dashbaoard PRO version for bootstrap template, Select, Calandar, Report, Charts, Tables etc." name="description" />
     <meta content="" name="author" />
-    <link rel="shortcut icon" href="../assets/img/logoicon.png">
+    <link rel="shortcut icon" href="../assets/img/newlogo.png">
 
     <!-- g fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">

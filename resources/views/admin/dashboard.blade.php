@@ -5,6 +5,7 @@
 @section('content')
   <!-- Main container starts -->
   <div class="container main-container" id="main-container">
+    <span class="badge badge-primary mb-2" style="font-size: 20px">Penjualan Tunai</span>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-6 col-xl-3">
             <div class="card border-0 shadow-sm overflow-hidden mb-4">
@@ -14,8 +15,8 @@
                             <i class="material-icons icons bg-primary md-36 icon-50">monetization_on</i>
                         </div>
                         <div class="col pl-0">
-                            <p class="mb-0">Total Profit</p>
-                            <h4 class="font-weight-light"><small>$</small> 25,410</h4>
+                            <p class="mb-0">Pendapatan Hari Ini</p>
+                            <h4 class="font-weight-light"><small>Rp. {{ number_format($tot_pendapat_hari_ini,0)  }}</small></h4>
                         </div>
                     </div>
                     <div class="progress h-5 mt-2">
@@ -32,8 +33,8 @@
                             <i class="material-icons icons bg-danger md-36 icon-50">remove_from_queue</i>
                         </div>
                         <div class="col pl-0">
-                            <p class="mb-0">Total Loss</p>
-                            <h4 class="font-weight-light"><small>$</small> 15,410</h4>
+                            <p class="mb-0">Pendapatan Bulan Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pendapat_bulanan,0)  }}</small></h4>
                         </div>
                     </div>
                     <div class="progress h-5 mt-2">
@@ -48,8 +49,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col ">
-                            <p class="mb-0">Total Deals</p>
-                            <h4 class="font-weight-light">15410 <small>+15%</small></h4>
+                            <p class="mb-0">Pendapatan Tahun Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pendapat_tahunan,0)  }}</small></h4>
                         </div>
                         <div class="col-auto text-center pl-0">
                             <i class="material-icons icons bg-warning md-36 icon-50">language</i>
