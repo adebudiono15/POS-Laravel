@@ -103,7 +103,7 @@
                                         <img src="../assets/img/user1.png" alt="">
                                     </figure>
                                     <div class="username-text ml-2 mr-2 d-none d-lg-inline-block">
-                                        <h6 class="username"><span>Welcome,</span>Maxartkiller</h6>
+                                        <h6 class="username"><span>Welcome,</span>Admin</h6>
                                     </div>
                                     <figure class="rounded avatar avatar-30 d-none d-md-inline-block">
                                         <i class="material-icons">expand_more</i>
@@ -118,7 +118,7 @@
                                     <div class="text-center mb-3 top-60 z-2">
                                         <figure class="avatar avatar-120 mx-auto shadow"><img src="../assets/img/user1.png" alt=""></figure>
                                     </div>
-                                    <h5 class="text-center mb-0">Maxartkiller</h5>
+                                    <h5 class="text-center mb-0">Admin</h5>
                                     <a class="dropdown-item border-top" href="#">
                                         <div class="row">
                                             <div class="col-auto align-self-center">

@@ -53,7 +53,7 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{ url("/master-pembelian") }}"><span>Pembelian Tunai</span></a>
                 </div>
-                <h6 class="subtitle fs11 text-white badge badge-warning">TRANSAKSI KREDIT</h6>
+                <h6 class="subtitle fs11 text-white badge badge-danger">TRANSAKSI KREDIT</h6>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{ url("/master-penjualan-kredit") }}"><span>Penjualan Kredit</span></a>
                 </div>

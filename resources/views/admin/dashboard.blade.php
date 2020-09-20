@@ -5,22 +5,19 @@
 @section('content')
   <!-- Main container starts -->
   <div class="container main-container" id="main-container">
-    <span class="badge badge-primary mb-2" style="font-size: 20px">Penjualan Tunai</span>
+    <span class="badge badge-primary mb-2" style="font-size: 17px"><b>TRANSAKSI TUNAI</b></span>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-6 col-xl-3">
             <div class="card border-0 shadow-sm overflow-hidden mb-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-auto text-center">
-                            <i class="material-icons icons bg-primary md-36 icon-50">monetization_on</i>
+                            <i class="material-icons icons  md-36 icon-50">monetization_on</i>
                         </div>
                         <div class="col pl-0">
-                            <p class="mb-0">Pendapatan Hari Ini</p>
+                            <p class="mb-0">Penjualan Hari Ini</p>
                             <h4 class="font-weight-light"><small>Rp. {{ number_format($tot_pendapat_hari_ini,0)  }}</small></h4>
                         </div>
-                    </div>
-                    <div class="progress h-5 mt-2">
-                        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
@@ -30,15 +27,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-auto text-center">
-                            <i class="material-icons icons bg-danger md-36 icon-50">remove_from_queue</i>
+                            <i class="material-icons icons md-36 icon-50">shopping_cart</i>
                         </div>
                         <div class="col pl-0">
-                            <p class="mb-0">Pendapatan Bulan Ini</p>
+                            <p class="mb-0">Penjualan Bulan Ini</p>
                             <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pendapat_bulanan,0)  }}</small></h4>
                         </div>
-                    </div>
-                    <div class="progress h-5 mt-2">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
@@ -49,97 +43,232 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col ">
-                            <p class="mb-0">Pendapatan Tahun Ini</p>
+                            <p class="mb-0">Penjualan Tahun Ini</p>
                             <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pendapat_tahunan,0)  }}</small></h4>
                         </div>
                         <div class="col-auto text-center pl-0">
-                            <i class="material-icons icons bg-warning md-36 icon-50">language</i>
+                            <i class="material-icons icons md-36 icon-50">language</i>
                         </div>
                     </div>
-                    <div class="progress h-5 mt-2">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col ">
+                            <p class="mb-0">Transaksi Penjualan Tahun Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>{{ $tot_transaksi_tahunan  }}</small></h4>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+    
     <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto text-center">
+                            <i class="material-icons icons md-36 icon-50">store</i>
+                        </div>
+                        <div class="col pl-0">
+                            <p class="mb-0">Pembelian Hari Ini</p>
+                            <h4 class="font-weight-light"><small>Rp. {{ number_format($tot_pembelian_hari_ini,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto text-center">
+                            <i class="material-icons icons md-36 icon-50">shopping_basket</i>
+                        </div>
+                        <div class="col pl-0">
+                            <p class="mb-0">Pembelian Bulan Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pembelian_bulanan,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col ">
+                            <p class="mb-0">Pembelian Tahun Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pembelian_tahunan,0)  }}</small></h4>
+                        </div>
+                        <div class="col-auto text-center pl-0">
+                            <i class="material-icons icons md-36 icon-50">receipt</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col ">
+                            <p class="mb-0">Transaksi Pembelian Tahun Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>{{ $tot_transaksi_pembelian_tahunan  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <span class="badge badge-danger mb-2" style="font-size: 17px"><b>TRANSAKSI KREDIT</b></span>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto text-center">
+                            <i class="material-icons icons  md-36 icon-50">local_mall</i>
+                        </div>
+                        <div class="col pl-0">
+                            <p class="mb-0">Penjualan Hari Ini</p>
+                            <h4 class="font-weight-light"><small>Rp. {{ number_format($tot_pendapat_kredit_hari_ini,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto text-center">
+                            <i class="material-icons icons md-36 icon-50">arrow_upward</i>
+                        </div>
+                        <div class="col pl-0">
+                            <p class="mb-0">Penjualan Bulan Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pendapat_kredit_bulan_ini,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col ">
+                            <p class="mb-0">Penjualan Tahun Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pendapat_kredit_tahun_ini,0)  }}</small></h4>
+                        </div>
+                        <div class="col-auto text-center pl-0">
+                            <i class="material-icons icons md-36 icon-50">payments</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col ">
+                            <p class="mb-0">Piutang</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_piutang,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto text-center">
+                            <i class="material-icons icons  md-36 icon-50">view_headline</i>
+                        </div>
+                        <div class="col pl-0">
+                            <p class="mb-0">Pembelian Hari Ini</p>
+                            <h4 class="font-weight-light"><small>Rp. {{ number_format($tot_pembelian_kredit_hari_ini,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto text-center">
+                            <i class="material-icons icons md-36 icon-50">today</i>
+                        </div>
+                        <div class="col pl-0">
+                            <p class="mb-0">Pembelian Bulan Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pembelian_kredit_bulan_ini,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col ">
+                            <p class="mb-0">Pembelian Tahun Ini</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_pembelian_kredit_tahun_ini,0)  }}</small></h4>
+                        </div>
+                        <div class="col-auto text-center pl-0">
+                            <i class="material-icons icons md-36 icon-50">folder_special</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card border-0 shadow-sm overflow-hidden mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col ">
+                            <p class="mb-0">Hutang</p>
+                            <h4 class="font-weight-light" style="font-size: 18px;"><small>Rp. {{ number_format($tot_hutang,0)  }}</small></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="row">
         <div class="col-12">
             <div class="card border-0 shadow-sm mb-4">
-                <div class="card-header border-0 bg-none">
-                    <div class="row">
-                        <div class="col">
-                            <p class="fs15">User Session Overview<br><small class="text-template-primary-light">Per Quarter</small></p>
-                        </div>
-                        <form class="form-inline search align-self-center">
-                            <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-link btn-sm" type="submit"><i class="material-icons">search</i></button>
-                        </form>
-                        <div class="col-auto">
-                            <button class="btn btn-sm btn-outline-template">
-                                <i class="material-icons md-18 mr-2">print</i> Print
-                            </button>
-                            <button class="btn btn-sm btn-outline-template ml-2">
-                                <i class="material-icons md-18 mr-2">cloud_download</i> Export
-                            </button>
-                            <div class="dropdown d-inline-block  ml-2">
-                                <button class="btn dropdown-toggle btn-sm btn-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_horiz</i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="card-body">
                     <br>
-                    <div class="areachart">
-                        <canvas id="mixedchartjs"></canvas>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-auto">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <i class="material-icons text-template-primary fs15 vm">album</i>
-                                </div>
-                                <div class="col pl-0">
-                                    <p>IT User <small class="d-block"><span class="text-template-primary">25600</span></small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto border-left-dashed">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <i class="material-icons text-success fs15 vm">album</i>
-                                </div>
-                                <div class="col pl-0">
-                                    <p>Non-IT <small class="d-block"><span class="text-template-primary">6548</span></small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto border-left-dashed">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <i class="material-icons text-danger fs15 vm">album</i>
-                                </div>
-                                <div class="col pl-0">
-                                    <p>Trainee <small class="d-block"><span class="text-template-primary">15548</span></small></p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                        <div id="myChart" width="200" height="100"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
+    </div> --}}
+
+    {{-- <div class="row">
         <div class="col-12 col-md-12">
             <div class="card border-0 shadow-sm overflow-hidden mb-4">
                 <div class="card-header border-0 bg-none">
@@ -381,7 +510,61 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
     <!-- Main container ends -->
 @endsection
+
+@push('js-second')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+{{-- <script>
+Highcharts.chart('myChart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Monthly Average Rainfall'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: [
+            'Jan',
+            'Feb',
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Tokyo',
+        data: {!! json_encode($hutang) !!}
+
+    }, {
+        name: 'New York',
+        data: [83.6]p
+
+    }]
+});
+</script> --}}
+    
+@endpush
