@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 17 Sep 2020 pada 03.33
+-- Waktu pembuatan: 21 Sep 2020 pada 17.49
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -46,10 +46,10 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `satuan`, `nama_supplier_id`, `stock`, `harga`, `kategori`, `harga_beli`, `created_at`, `updated_at`) VALUES
-(12, 255, 'Kurma', 'Pcs', '3', 19, 25000, 'Oleh-oleh Haji', 20000, '2020-09-15 19:49:40', '2020-09-16 13:32:36'),
-(13, 989, 'sss', 'Pcs', '1', 10, 20000, 'Buah tangan', 15000, '2020-09-15 20:01:48', '2020-09-15 20:01:48'),
-(14, 633, 'Dalal', 'Pcs', '4', 17, 20000, 'Parfum', 15000, '2020-09-15 20:49:40', '2020-09-16 11:58:34'),
-(15, 498, 'Soft', 'Pcs', '4', 17, 25000, 'Parfum', 20000, '2020-09-15 20:50:07', '2020-09-16 11:58:35');
+(12, 255, 'Kurma', 'Pcs', '3', 37, 25000, 'Oleh-oleh Haji', 20000, '2020-09-15 19:49:40', '2020-09-20 09:08:27'),
+(13, 989, 'sss', 'Pcs', '1', 9, 20000, 'Buah tangan', 15000, '2020-09-15 20:01:48', '2020-09-19 23:55:50'),
+(14, 633, 'Dalal', 'Pcs', '4', 59, 20000, 'Parfum', 15000, '2020-09-15 20:49:40', '2020-09-20 17:10:51'),
+(15, 498, 'Soft', 'Pcs', '4', 59, 25000, 'Parfum', 20000, '2020-09-15 20:50:07', '2020-09-20 17:10:51');
 
 -- --------------------------------------------------------
 
@@ -93,6 +93,66 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `history_pembayaran`
+--
+
+CREATE TABLE `history_pembayaran` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pembayaran` bigint(20) NOT NULL,
+  `total_pembayaran` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `history_pembayaran`
+--
+
+INSERT INTO `history_pembayaran` (`id`, `pembayaran`, `total_pembayaran`, `created_at`, `updated_at`) VALUES
+(1, 9, 20000, NULL, NULL),
+(2, 9, 10000, NULL, NULL),
+(3, 9, 10000, '2020-09-18 11:10:14', '2020-09-18 11:10:14'),
+(4, 9, 30000, '2020-09-18 11:16:20', '2020-09-18 11:16:20'),
+(5, 573506259, 20000, '2020-09-18 11:20:52', '2020-09-18 11:20:52'),
+(6, 18092020161056, 10000, '2020-09-18 11:29:41', '2020-09-18 11:29:41'),
+(7, 18092020200206, 250000, '2020-09-18 13:02:28', '2020-09-18 13:02:28'),
+(8, 18092020200814, 800000, '2020-09-19 09:58:39', '2020-09-19 09:58:39'),
+(9, 20092020155351, 70000, '2020-09-20 16:57:28', '2020-09-20 16:57:28'),
+(10, 20092020235819, 20000, '2020-09-20 16:58:49', '2020-09-20 16:58:49'),
+(11, 20092020235819, 10000, '2020-09-20 17:00:40', '2020-09-20 17:00:40'),
+(12, 20092020235819, 100000, '2020-09-20 17:02:44', '2020-09-20 17:02:44'),
+(13, 21092020000541, 40000, '2020-09-20 17:05:57', '2020-09-20 17:05:57'),
+(14, 21092020000541, 10000, '2020-09-20 17:06:17', '2020-09-20 17:06:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `history_pembayaran_pembelian`
+--
+
+CREATE TABLE `history_pembayaran_pembelian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pembayaran` bigint(20) NOT NULL,
+  `total_pembayaran` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `history_pembayaran_pembelian`
+--
+
+INSERT INTO `history_pembayaran_pembelian` (`id`, `pembayaran`, `total_pembayaran`, `created_at`, `updated_at`) VALUES
+(1, 18092020194427, 50000, '2020-09-18 12:59:18', '2020-09-18 12:59:18'),
+(2, 18092020193814, 200000, '2020-09-18 13:00:14', '2020-09-18 13:00:14'),
+(3, 18092020200701, 750000, '2020-09-18 13:07:22', '2020-09-18 13:07:22'),
+(4, 18092020194427, 300000, '2020-09-18 13:08:44', '2020-09-18 13:08:44'),
+(5, 21092020001051, 200000, '2020-09-20 17:11:11', '2020-09-20 17:11:11'),
+(6, 21092020001051, 150000, '2020-09-20 17:12:17', '2020-09-20 17:12:17');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `kategori`
 --
 
@@ -111,7 +171,8 @@ INSERT INTO `kategori` (`id`, `kategori`, `created_at`, `updated_at`) VALUES
 (5, 'Parfum', '2020-09-15 06:23:18', '2020-09-15 06:23:18'),
 (6, 'Oleh-oleh Haji', '2020-09-15 06:31:52', '2020-09-15 06:34:29'),
 (7, 'Buah tangan', '2020-09-15 06:34:58', '2020-09-15 06:34:58'),
-(8, 'Buah', '2020-09-15 09:23:48', '2020-09-15 09:24:31');
+(8, 'Buah', '2020-09-15 09:23:48', '2020-09-15 09:24:31'),
+(9, 'Busana', '2020-09-16 13:56:26', '2020-09-16 13:56:26');
 
 -- --------------------------------------------------------
 
@@ -143,7 +204,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2020_09_15_124015_create_kategori_table', 6),
 (13, '2020_09_15_125046_create_supplier_table', 7),
 (16, '2020_09_15_173427_create_pembelian_table', 8),
-(17, '2020_09_15_173503_create__pembelian_line_table', 8);
+(17, '2020_09_15_173503_create__pembelian_line_table', 8),
+(22, '2020_09_18_070414_create_penjualan_kredit_table', 9),
+(23, '2020_09_18_144804_create_penjualan_kredit_line_table', 10),
+(25, '2020_09_18_180024_create_history_pembayaran_table', 11),
+(26, '2020_09_18_184720_create_pembelian_kredit_table', 12),
+(27, '2020_09_18_184800_create_pembelian_kredit_line_table', 12),
+(28, '2020_09_18_195325_create_history_pembayaran_pembelian_table', 13);
 
 -- --------------------------------------------------------
 
@@ -167,6 +234,8 @@ CREATE TABLE `pembelian` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `no_struk` bigint(20) NOT NULL,
   `nama_supplier_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grand_total` bigint(20) DEFAULT NULL,
+  `nama` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -175,10 +244,71 @@ CREATE TABLE `pembelian` (
 -- Dumping data untuk tabel `pembelian`
 --
 
-INSERT INTO `pembelian` (`id`, `no_struk`, `nama_supplier_id`, `created_at`, `updated_at`) VALUES
-(59, 1160562150, '4', '2020-09-16 11:57:40', '2020-09-16 11:57:40'),
-(60, 1856041336, '4', '2020-09-16 11:58:34', '2020-09-16 11:58:34'),
-(61, 282954478, '3', '2020-09-16 13:32:36', '2020-09-16 13:32:36');
+INSERT INTO `pembelian` (`id`, `no_struk`, `nama_supplier_id`, `grand_total`, `nama`, `created_at`, `updated_at`) VALUES
+(69, 993531142, '3', 200000, '[\"12\"]', '2020-09-18 12:42:10', '2020-09-18 12:42:10'),
+(70, 775682906, '3', 200000, '[\"12\"]', '2020-09-18 12:43:57', '2020-09-18 12:43:57'),
+(71, 1232654643, '4', 70000, '[\"14\",\"15\"]', '2020-09-20 07:41:03', '2020-09-20 07:41:04');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pembelian_kredit`
+--
+
+CREATE TABLE `pembelian_kredit` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `no_struk` bigint(20) NOT NULL,
+  `nama_supplier_id` bigint(20) NOT NULL,
+  `sisa` bigint(20) DEFAULT NULL,
+  `nama` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `grand_total` bigint(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `pembelian_kredit`
+--
+
+INSERT INTO `pembelian_kredit` (`id`, `no_struk`, `nama_supplier_id`, `sisa`, `nama`, `grand_total`, `created_at`, `updated_at`) VALUES
+(4, 1937583247, 4, 0, '[\"14\",\"15\"]', 350000, '2020-09-18 12:44:27', '2020-09-18 13:08:44'),
+(5, 1792085506, 4, 1000000, '[\"14\",\"15\"]', 1750000, '2020-09-18 13:07:01', '2020-09-18 13:07:22'),
+(6, 196515107, 3, 200000, '[\"12\"]', 200000, '2020-09-20 09:08:27', '2020-09-20 09:08:27'),
+(7, 517814311, 4, 350000, '[\"14\",\"15\"]', 350000, '2020-09-20 17:09:26', '2020-09-20 17:09:27'),
+(8, 972806062, 4, 0, '[\"14\",\"15\"]', 350000, '2020-09-20 17:10:51', '2020-09-20 17:12:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pembelian_kredit_line`
+--
+
+CREATE TABLE `pembelian_kredit_line` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pembelian_kredit` bigint(20) NOT NULL,
+  `barang` bigint(20) NOT NULL,
+  `harga_beli` bigint(20) NOT NULL,
+  `qty` bigint(20) NOT NULL,
+  `grand_total` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `pembelian_kredit_line`
+--
+
+INSERT INTO `pembelian_kredit_line` (`id`, `pembelian_kredit`, `barang`, `harga_beli`, `qty`, `grand_total`, `created_at`, `updated_at`) VALUES
+(2, 3, 12, 20000, 10, 200000, NULL, NULL),
+(3, 4, 14, 15000, 10, 150000, NULL, NULL),
+(4, 4, 15, 20000, 10, 200000, NULL, NULL),
+(5, 5, 14, 15000, 50, 750000, NULL, NULL),
+(6, 5, 15, 20000, 50, 1000000, NULL, NULL),
+(7, 6, 12, 20000, 10, 200000, NULL, NULL),
+(8, 7, 14, 15000, 10, 150000, NULL, NULL),
+(9, 7, 15, 20000, 10, 200000, NULL, NULL),
+(10, 8, 14, 15000, 10, 150000, NULL, NULL),
+(11, 8, 15, 20000, 10, 200000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -202,16 +332,10 @@ CREATE TABLE `pembelian_line` (
 --
 
 INSERT INTO `pembelian_line` (`id`, `pembelian`, `barang`, `harga_beli`, `qty`, `grand_total`, `created_at`, `updated_at`) VALUES
-(42, 56, '14', 15000, 1, 15000, NULL, NULL),
-(43, 56, '15', 20000, 1, 20000, NULL, NULL),
-(44, 57, '12', 20000, 10, 200000, NULL, NULL),
-(45, 58, '14', 15000, 2, 30000, NULL, NULL),
-(46, 58, '15', 20000, 2, 40000, NULL, NULL),
-(47, 59, '14', 15000, 2, 30000, NULL, NULL),
-(48, 59, '15', 20000, 3, 60000, NULL, NULL),
-(49, 60, '14', 15000, 2, 30000, NULL, NULL),
-(50, 60, '15', 20000, 1, 20000, NULL, NULL),
-(51, 61, '12', 20000, 2, 40000, NULL, NULL);
+(61, 69, '12', 20000, 10, 200000, NULL, NULL),
+(62, 70, '12', 20000, 10, 200000, NULL, NULL),
+(63, 71, '14', 15000, 2, 30000, NULL, NULL),
+(64, 71, '15', 20000, 2, 40000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,9 +361,79 @@ CREATE TABLE `penjualan` (
 --
 
 INSERT INTO `penjualan` (`id`, `no_struk`, `nama_customer`, `nama`, `grand_total`, `kode_customer`, `alamat`, `telepon`, `created_at`, `updated_at`) VALUES
-(28, 1634504972, 'Ade', '[\"9\",\"10\"]', 11112011111, 419, 'Jl..', 83841230838, '2020-09-14 09:48:13', '2020-09-14 09:48:13'),
-(29, 1010491857, 'Bud', '[\"10\"]', 11111111111, 266, 'jljljljljljljl', 46456435464, '2020-09-15 09:50:11', '2020-09-15 09:50:11'),
-(34, 2145752451, 'Bud', '[\"12\",\"14\"]', 240000, 266, 'jljljljljljljl', 46456435464, '2020-09-16 10:59:46', '2020-09-16 10:59:46');
+(40, 1080823166, 'Bud', '[\"12\"]', 25000, 266, 'jljljljljljljl', 46456435464, '2020-08-18 07:51:48', '2020-09-18 13:03:54'),
+(41, 29360117, 'Bud', '[\"12\",\"14\",\"15\"]', 70000, 266, 'jljljljljljljl', 46456435464, '2020-09-19 09:52:46', '2020-09-19 09:52:46'),
+(43, 943285829, 'Bud', '[\"12\",\"13\"]', 45000, 266, 'jljljljljljljl', 46456435464, '2020-09-19 23:55:50', '2020-09-19 23:55:50'),
+(44, 1057875487, 'Ade', '[\"14\",\"15\"]', 405000, 419, 'Jl..', 83841230838, '2020-09-19 23:58:08', '2020-09-19 23:58:08');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penjualan_kredit`
+--
+
+CREATE TABLE `penjualan_kredit` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `no_struk` bigint(20) NOT NULL,
+  `nama_customer` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode_customer` bigint(20) NOT NULL,
+  `nama` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `grand_total` bigint(20) DEFAULT NULL,
+  `sisa` bigint(20) DEFAULT NULL,
+  `status` bigint(20) NOT NULL,
+  `jumlah_bayar` bigint(20) DEFAULT NULL,
+  `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telepon` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `penjualan_kredit`
+--
+
+INSERT INTO `penjualan_kredit` (`id`, `no_struk`, `nama_customer`, `kode_customer`, `nama`, `grand_total`, `sisa`, `status`, `jumlah_bayar`, `alamat`, `telepon`, `created_at`, `updated_at`) VALUES
+(10, 1778283397, 'Bud', 266, '[\"12\"]', 250000, 250000, 1, NULL, 'jljljljljljljl', 46456435464, '2020-08-18 12:37:26', '2020-09-18 12:37:26'),
+(11, 2137497168, 'Bud', 266, '[\"12\"]', 250000, 0, 1, NULL, 'jljljljljljljl', 46456435464, '2020-09-18 13:02:06', '2020-09-18 13:02:27'),
+(12, 242520080, 'Bud', 266, '[\"14\",\"15\"]', 1800000, 1000000, 1, NULL, 'jljljljljljljl', 46456435464, '2020-09-18 13:08:14', '2020-09-19 09:58:39'),
+(13, 1588411783, 'Bud', 266, '[\"12\",\"14\",\"15\"]', 70000, 0, 1, NULL, 'jljljljljljljl', 46456435464, '2020-09-20 08:53:51', '2020-09-20 16:57:28'),
+(14, 297680661, 'Ade', 419, '[\"14\"]', 40000, 0, 1, NULL, 'Jl..', 83841230838, '2020-09-20 16:58:19', '2020-09-20 17:02:44'),
+(15, 705899298, 'Bud', 266, '[\"15\"]', 50000, 0, 1, NULL, 'jljljljljljljl', 46456435464, '2020-09-20 17:05:41', '2020-09-20 17:06:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penjualan_kredit_line`
+--
+
+CREATE TABLE `penjualan_kredit_line` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `penjualan_kredit` bigint(20) NOT NULL,
+  `nama` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `satuan_id` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qty` bigint(20) NOT NULL,
+  `harga` bigint(20) NOT NULL,
+  `grand_total` bigint(20) NOT NULL,
+  `jumlah_bayar` bigint(20) DEFAULT NULL,
+  `sisa` bigint(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `penjualan_kredit_line`
+--
+
+INSERT INTO `penjualan_kredit_line` (`id`, `penjualan_kredit`, `nama`, `satuan_id`, `qty`, `harga`, `grand_total`, `jumlah_bayar`, `sisa`, `created_at`, `updated_at`) VALUES
+(11, 10, '12', 'Pcs', 10, 25000, 250000, NULL, NULL, NULL, NULL),
+(12, 11, '12', 'Pcs', 10, 25000, 250000, NULL, NULL, NULL, NULL),
+(13, 12, '14', 'Pcs', 40, 20000, 800000, NULL, NULL, NULL, NULL),
+(14, 12, '15', 'Pcs', 40, 25000, 1000000, NULL, NULL, NULL, NULL),
+(15, 13, '12', 'Pcs', 1, 25000, 25000, NULL, NULL, NULL, NULL),
+(16, 13, '14', 'Pcs', 1, 20000, 20000, NULL, NULL, NULL, NULL),
+(17, 13, '15', 'Pcs', 1, 25000, 25000, NULL, NULL, NULL, NULL),
+(18, 14, '14', 'Pcs', 2, 20000, 40000, NULL, NULL, NULL, NULL),
+(19, 15, '15', 'Pcs', 2, 25000, 50000, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -264,16 +458,15 @@ CREATE TABLE `penjualan_line` (
 --
 
 INSERT INTO `penjualan_line` (`id`, `penjualan`, `nama`, `satuan_id`, `harga`, `qty`, `grand_total`, `created_at`, `updated_at`) VALUES
-(43, 28, 9, 'Drem', 900000, 1, 900000, NULL, NULL),
-(44, 28, 10, 'Lusin', 11111111111, 1, 11111111111, NULL, NULL),
-(45, 29, 10, 'Lusin', 11111111111, 1, 11111111111, NULL, NULL),
-(46, 30, 7, 'Pcs', 25000, 1, 25000, NULL, NULL),
-(47, 31, 7, 'Pcs', 25000, 10, 250000, NULL, NULL),
-(48, 32, 7, 'Pcs', 25000, 10, 250000, NULL, NULL),
-(49, 33, 12, 'Pcs', 25000, 1, 25000, NULL, NULL),
-(50, 34, 12, 'Pcs', 25000, 8, 200000, NULL, NULL),
-(51, 34, 14, 'Pcs', 20000, 2, 40000, NULL, NULL),
-(52, 35, 12, 'Pcs', 25000, 3, 75000, NULL, NULL);
+(58, 40, 12, 'Pcs', 25000, 1, 25000, NULL, NULL),
+(59, 41, 12, 'Pcs', 25000, 1, 25000, NULL, NULL),
+(60, 41, 14, 'Pcs', 20000, 1, 20000, NULL, NULL),
+(61, 41, 15, 'Pcs', 25000, 1, 25000, NULL, NULL),
+(62, 42, 13, 'Pcs', 20000, 1, 20000, NULL, NULL),
+(63, 43, 12, 'Pcs', 25000, 1, 25000, NULL, NULL),
+(64, 43, 13, 'Pcs', 20000, 1, 20000, NULL, NULL),
+(65, 44, 14, 'Pcs', 20000, 9, 180000, NULL, NULL),
+(66, 44, 15, 'Pcs', 25000, 9, 225000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -296,7 +489,8 @@ INSERT INTO `satuan` (`id`, `nama_satuan`, `created_at`, `updated_at`) VALUES
 (1, 'Box', NULL, NULL),
 (2, 'Pcs', NULL, NULL),
 (3, 'Lusin', '2020-09-15 09:29:11', '2020-09-15 09:29:11'),
-(5, 'Drem', '2020-09-15 09:33:08', '2020-09-15 09:35:26');
+(5, 'Drem', '2020-09-15 09:33:08', '2020-09-15 09:35:26'),
+(6, 'Kg', '2020-09-16 13:55:26', '2020-09-16 13:55:47');
 
 -- --------------------------------------------------------
 
@@ -363,6 +557,18 @@ ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `history_pembayaran`
+--
+ALTER TABLE `history_pembayaran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `history_pembayaran_pembelian`
+--
+ALTER TABLE `history_pembayaran_pembelian`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
@@ -387,6 +593,18 @@ ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `pembelian_kredit`
+--
+ALTER TABLE `pembelian_kredit`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `pembelian_kredit_line`
+--
+ALTER TABLE `pembelian_kredit_line`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `pembelian_line`
 --
 ALTER TABLE `pembelian_line`
@@ -396,6 +614,18 @@ ALTER TABLE `pembelian_line`
 -- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `penjualan_kredit`
+--
+ALTER TABLE `penjualan_kredit`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `penjualan_kredit_line`
+--
+ALTER TABLE `penjualan_kredit_line`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -446,46 +676,82 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `history_pembayaran`
+--
+ALTER TABLE `history_pembayaran`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `history_pembayaran_pembelian`
+--
+ALTER TABLE `history_pembayaran_pembelian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT untuk tabel `pembelian_kredit`
+--
+ALTER TABLE `pembelian_kredit`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `pembelian_kredit_line`
+--
+ALTER TABLE `pembelian_kredit_line`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembelian_line`
 --
 ALTER TABLE `pembelian_line`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT untuk tabel `penjualan_kredit`
+--
+ALTER TABLE `penjualan_kredit`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT untuk tabel `penjualan_kredit_line`
+--
+ALTER TABLE `penjualan_kredit_line`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `penjualan_line`
 --
 ALTER TABLE `penjualan_line`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `satuan`
 --
 ALTER TABLE `satuan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
