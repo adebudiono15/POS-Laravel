@@ -12,4 +12,8 @@ class PenjualanKredit extends Model
     public function lines(){
         return $this->hasMany('App\Models\PenjualanKreditLine','penjualan_kredit');
      }
+
+     public function riwayat(){
+        return $this->hasMany('App\Models\HistoryPembayaran','penjualan_kredit');
+     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'DF'.$title)
+@section('title', 'DF'.$no_struk)
 
 @section('content')
 
@@ -13,8 +13,8 @@
                             <img src="{{ url('assets/img/newlogo.png') }}" height="100" alt="">
                         </div>
                     <div class="col text-right">
-                        Order Id: <b>{{ $inv }}</b>
-                        <br> Faktur Id: <b>{{ $title }}</b>
+                        Order Id: <b>{{ $no_id }}</b>
+                        <br> Faktur Id: <b>{{ $no_struk }}</b>
                         <br>Tanggal Transaksi : {{ date('d M Y ', strtotime ($penjualan_kredit->created_at)) }}
                     </div>
                 </div>
@@ -89,7 +89,7 @@
             <label for="">CICIL/BAYAR</label>
             <input type="hidden" name="total_sisa" value="{{ $penjualan_kredit->sisa }}">
             <input type="hidden" name="id_penjualan" value="{{ $penjualan_kredit->id }}">
-            <input type="hidden" name="no_struk" value="{{ $title }}">
+            <input type="hidden" name="no_struk" value="{{ $no_struk }}">
             <input type="number" class="form-control" name="bayar" style="height:28px">
             <button type="submit" class="btn btn-sm btn-outline-template mt-4"  style="height:28px">
                 Update Data

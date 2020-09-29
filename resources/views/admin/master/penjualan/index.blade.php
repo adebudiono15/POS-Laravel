@@ -126,8 +126,9 @@
                                 <tr>
                                     <th><b>NAMA</b></th>
                                     <th><b>SATUAN</b></th>
-                                    <th><b>HARGA</b></th>
-                                    <th><b>QTY</b></th>
+                                    <th class="text-center"><b>HARGA</b></th>
+                                    <th class="text-center"><b>SISA STOCK</b></th>
+                                    <th class="text-center"><b>QTY</b></th>
                                     <th><b>AKSI</b></th>
                                 </tr>
                             </thead>
@@ -143,11 +144,14 @@
                                     <label for="kode_barang" @error('kode_barang') class="text-danger" @enderror>Tambah Barang @error('kode_barang')
                                         | {{ $message }}
                                         @enderror</label>
+                                    <?php
+                                    $barang = \DB::select("SELECT * FROM barang where stock > 0");
+                                    ?>
                                    <select id="barang" class="js-states form-control" style="width: 100%" name="kode_barang">
                                     <option value=""></option>
-                                   @foreach ($barang as $item)
-                                       <option value="{{ $item->kode_barang }}">{{ $item->nama_barang }}</option>
-                                   @endforeach
+                                    @foreach ($barang as $item)
+                                    <option value="{{ $item->kode_barang }}">{{ $item->nama_barang }}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -197,19 +201,25 @@
                         var nilai = '';
                         nilai +='<tr>';
                             
-                        nilai +='<td style="width:200px;">';
+                        nilai +='<td style="width:150px;">';
                         nilai +=data.data.nama_barang;
                         nilai +='<input type="hidden" class="form-control" name="nama[]" value="'+data.data.id+'" style="height:28px;"></input>';
                         nilai +='</td>';
 
-                        nilai +='<td style="width:120px;">';
+                        nilai +='<td style="width:100px;">';
                         nilai +=data.data.satuan;
                         nilai +='<input type="hidden" class="form-control" name="satuan_id[]" value="'+data.data.satuan+'" style="height:28px;"></input>';
                         nilai +='</td>';
 
 
-                        nilai +='<td class="harga" style="width:250px;">';
+                        nilai +='<td class="harga" style="width:200px;">';
                         nilai +='<input type="number" class="form-control" name="harga[]" value="'+data.data.harga+'" style="height:28px"></input>';
+                        nilai +='</td>';
+
+
+                        nilai +='<td class="text-center" style="width:120px;">';
+                        nilai +=data.data.stock;
+                        nilai +='<input type="hidden" class="form-control" name="stock[]" value="'+data.data.stock+'" style="height:28px;"></input>';
                         nilai +='</td>';
 
 

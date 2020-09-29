@@ -53,8 +53,17 @@ class PenjualanController extends Controller
             $satuan_id = $request->satuan_id;
             $qty = $request->qty;
             $harga = $request->harga;
+            $stock = $request->stock;
 
-            \DB::transaction(function () use ($nama, $qty, $harga, $nama_customer, $satuan_id, $alamat, $telepon, $kode_customer) {
+            foreach ($qty as $e => $qt) {
+                if ($qty[$e] > $stock[$e]) {
+                    Session::flash('ups');
+                    return redirect()->back();
+                }
+            }
+           
+
+            \DB::transaction(function () use ($nama, $qty, $harga, $nama_customer, $satuan_id, $alamat, $telepon, $kode_customer,$stock) {
                 $header = Penjualan::insertGetId([
                     'no_struk' => rand(),
                     'nama_customer' => $nama_customer,
@@ -66,25 +75,26 @@ class PenjualanController extends Controller
                 ]);
 
                 foreach ($nama as $e => $nm) {
-                    PenjualanLine::insert([
-                        'penjualan' => $header,
-                        'nama' => $nm,
-                        'harga' => $harga[$e],
-                        'qty' => $qty[$e],
-                        'satuan_id' => $satuan_id[$e],
-                        'grand_total' => (int)$qty[$e] * (int) $harga[$e]
-                    ]);
-
-                    $dt = Barang::find($nm);
-                    $qty_now = $dt->stock;
-                    $qty_new = $qty_now - $qty[$e];
-                    Barang::where('id', $nm)->update([
-                        'stock'=>$qty_new
-                    ]);
+                        PenjualanLine::insert([
+                            'penjualan' => $header,
+                            'nama' => $nm,
+                            'harga' => $harga[$e],
+                            'qty' => $qty[$e],
+                            'satuan_id' => $satuan_id[$e],
+                            'grand_total' => (int)$qty[$e] * (int) $harga[$e]
+                        ]);
+    
+                        $dt = Barang::find($nm);
+                        $qty_now = $dt->stock;
+                        $qty_new = $qty_now - $qty[$e];
+                        Barang::where('id', $nm)->update([
+                            'stock'=>$qty_new
+                        ]);
+                    
+                    
                 }
 
                 $sum_total = PenjualanLine::where('penjualan', $header)->sum('grand_total');
-
 
                 Penjualan::where('id', $header)->update([
                     'nama' => $nama,
@@ -108,9 +118,6 @@ class PenjualanController extends Controller
         $title = date('dmYHis', strtotime($penjualan->created_at));
         $inv = $penjualan->no_struk;
         $nama = $penjualan->nama_customer;
-
-
-
 
         return view('admin.master.penjualan.detail', compact('penjualan', 'title', 'nama' ,'inv'));
     }

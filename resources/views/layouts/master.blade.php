@@ -350,6 +350,27 @@
         })
         @endif
 
+        @if(Session::has('lebih'))
+        Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Pembayaran Lebih Dari Sisa',
+        showConfirmButton: false,
+        timer: 2800
+        })
+        @endif
+
+        @if(Session::has('ups'))
+        Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'UPS....',
+        title: 'Ada Barang Yang Kurang Stok-nya.',
+        showConfirmButton: false,
+        timer: 2800
+        })
+        @endif
+
         @if(Session::has('update'))
         Swal.fire({
         position: 'center',

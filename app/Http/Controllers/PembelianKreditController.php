@@ -59,7 +59,6 @@ class PembelianKreditController extends Controller
             $barang = $request->barang;
             $qty = $request->qty;
             $harga_beli = $request->harga_beli;
-
             $no_struk = $request->no_struk;
             $nama_supplier = $request->nama_supplier;
 
@@ -74,12 +73,10 @@ class PembelianKreditController extends Controller
                 if ($qt == 0) {
                    continue;
                 }
-
                 $dt_barang = Barang::where('id', $barang[$e])->first();
                 $harga_beli = $dt_barang->harga_beli;
                 $grand_total = $qt * $harga_beli;
 
-                
                 PembelianKreditLine::insert([
                     'pembelian_kredit' =>$id_pembelian,
                     'barang' => $barang[$e],
@@ -102,17 +99,13 @@ class PembelianKreditController extends Controller
                     'grand_total' => $sum_total,
                     'sisa' => $sum_total,
                 ]);
-                
             }
-
             // dd($request->all());
             \Session()->flash('success', 'Berhasil Melakukan Transaksi');
         } catch (\Expetion $e) {
             \Session()->flash('gagal', $e->getMessage());
         }
-
         return redirect('master-pembelian-kredit');
-        
     }
 
     public function detail($id)
@@ -134,19 +127,23 @@ class PembelianKreditController extends Controller
             $no_struk = $request->no_struk;
            
            $data['sisa'] = $total_sisa - $bayar;
-            PembelianKredit::where('id', $id_pembelian)->update($data);
+           if ($bayar > $total_sisa) {
+                \Session()->flash('lebih');
+                return redirect()->back();
+           }else{
+                PembelianKredit::where('id', $id_pembelian)->update($data);
 
-            HistoryPembayaranPembelian::insert([
-                'pembayaran' =>$no_struk,
-                'total_pembayaran' =>  $bayar,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-                
-            ]);
+                HistoryPembayaranPembelian::insert([
+                    'pembayaran' =>$no_struk,
+                    'total_pembayaran' =>  $bayar,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    
+                ]);
 
-            // dd($request->all());
-            \Session()->flash('update');
-
+                // dd($request->all());
+                \Session()->flash('update');
+           }
         }catch (\Expetion $e) {
             \Session()->flash('gagal', $e->getMessage());
         }

@@ -66,8 +66,9 @@ Route::get('transaksi-pembelian/{id}', 'PembelianController@detail');
 Route::get('/master-penjualan-kredit', 'PenjualanKreditController@index')->name('penjualan-kredit');
 Route::post('simpan-penjualan-kredit', 'PenjualanKreditController@save')->name('save-penjualan-kredit');
 Route::delete('penjualan-kredit/{id}', 'PenjualanKreditController@delete')->name('delete-penjualan-kredit');
-Route::get('transaksi-penjualan-kredit/{id}', 'PenjualanKreditController@detail');
+Route::get('transaksi-penjualan-kredit/{id}', 'PenjualanKreditController@detail')->name('detail-penjualan-kredit');
 Route::put('transaksi-penjualan-kredit/{id}', 'PenjualanKreditController@update');
+Route::get('{id}/riwayat-pembayaran', 'PenjualanKreditController@riwayat')->name('riwayat-pembayaran');
 
 // pembelian kredit
 Route::get('/master-pembelian-kredit', 'PembelianKreditController@index')->name('pembelian-kredit');

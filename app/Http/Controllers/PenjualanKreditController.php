@@ -98,11 +98,11 @@ class PenjualanKreditController extends Controller
     public function detail($id)
     {
         $penjualan_kredit = PenjualanKredit::find($id);
-        $title = date('dmYHis', strtotime($penjualan_kredit->created_at));
-        $inv = $penjualan_kredit->no_struk;
+        $no_id = date('dmYHis', strtotime($penjualan_kredit->created_at));
+        $no_struk = $penjualan_kredit->no_struk;
         $nama = $penjualan_kredit->nama_customer;
 
-        return view('admin.master.penjualankredit.detail', compact('penjualan_kredit', 'title', 'nama' ,'inv'));
+        return view('admin.master.penjualankredit.detail', compact('penjualan_kredit', 'no_struk', 'nama' ,'no_id'));
     }
 
     public function update(Request $request, $id){
@@ -114,18 +114,24 @@ class PenjualanKreditController extends Controller
             $no_struk = $request->no_struk;
            
            $data['sisa'] = $total_sisa - $bayar;
+           if ($bayar > $total_sisa) {
+               \Session()->flash('lebih');
+               return redirect()->back();
+           }else{
             PenjualanKredit::where('id', $id_penjualan)->update($data);
 
             HistoryPembayaran::insert([
-                'pembayaran' =>$no_struk,
+                'penjualan_kredit' => $id_penjualan,
+                'no_struk' =>$no_struk,
                 'total_pembayaran' =>  $bayar,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
                 
             ]);
-
             // dd($request->all());
             \Session()->flash('update');
+           }
+            
 
         }catch (\Expetion $e) {
             \Session()->flash('gagal', $e->getMessage());
@@ -133,4 +139,12 @@ class PenjualanKreditController extends Controller
 
         return redirect()->back();
     }
+
+    public function riwayat($id)
+    {
+        $penjualan_kredit = PenjualanKredit::find($id);
+        // dd($penjualan_kredit);
+        return view('admin.master.penjualankredit.riwayat', compact('penjualan_kredit'));
+    }
+   
 }
