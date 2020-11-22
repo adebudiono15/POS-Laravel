@@ -20,7 +20,11 @@ class PenjualanKreditController extends Controller
         $satuan = Satuan::get();
         $customer = Customer::get();
         $penjualan_kredit = PenjualanKredit::get();
-        $kode = rand();
+        // $kode = rand();
+        // $date = date('dmY');
+        $firstInvoiceID = PenjualanKredit::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         return view('admin.master.penjualankredit.index', compact('barang','satuan','penjualan_kredit','kode','customer'));
     }
 
@@ -32,15 +36,24 @@ class PenjualanKreditController extends Controller
             $nama = $request->nama;
             $nama_customer = $request->nama_customer;
             $kode_customer = $request->kode_customer;
+            $kode = $request->no_struk;
             $alamat = $request->alamat;
             $telepon = $request->telepon;
             $satuan_id = $request->satuan_id;
             $qty = $request->qty;
             $harga = $request->harga;
+            $stock = $request->stock;
 
-            \DB::transaction(function () use ($nama, $qty, $harga, $nama_customer, $satuan_id, $alamat, $telepon, $kode_customer) {
+            foreach ($qty as $e => $qt) {
+                if ($qty[$e] > $stock[$e]) {
+                    Session::flash('ups');
+                    return redirect()->back();
+                }
+            }
+
+            \DB::transaction(function () use ($nama, $qty, $harga, $nama_customer, $satuan_id, $alamat, $telepon, $kode_customer, $kode) {
                 $header = PenjualanKredit::insertGetId([
-                    'no_struk' => rand(),
+                    'no_struk' => $kode,
                     'nama_customer' => $nama_customer,
                     'alamat' => $alamat,
                     'telepon' => $telepon,
@@ -109,9 +122,10 @@ class PenjualanKreditController extends Controller
         try{
 
             $total_sisa = $request->total_sisa;
-            $bayar = $request->bayar;
             $id_penjualan = $request->id_penjualan;
             $no_struk = $request->no_struk;
+            $bayar = $request->bayar;
+            $bayar = str_replace(["." , "Rp", " "], '', $bayar);
            
            $data['sisa'] = $total_sisa - $bayar;
            if ($bayar > $total_sisa) {

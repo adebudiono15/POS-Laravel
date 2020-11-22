@@ -103,7 +103,7 @@
                 <form action="{{ route('save-penjualan-kredit') }}" method="post">
                 @csrf
                 <div class="row ">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label for="nama_customer" @error('nama_customer') class="text-danger" @enderror>Customer @error('nama_customer')
                                 | {{ $message }}
@@ -122,7 +122,16 @@
                             </tr>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
+                        <div class="row" style="margin-top: 24px">
+                            <a href="{{ route('customer') }}">
+                                <button type="button" class="btn btn-sm btn-outline-template">
+                                    <i class="material-icons">note_add</i> Tambah Customer
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="no_struk" 
                                 @error('no_struk') class="text-danger" 
@@ -143,6 +152,7 @@
                                     <th><b>NAMA</b></th>
                                     <th><b>SATUAN</b></th>
                                     <th><b>HARGA</b></th>
+                                    <th><b>SISA STOCK</b></th>
                                     <th><b>QTY</b></th>
                                     <th><b>AKSI</b></th>
                                 </tr>
@@ -165,7 +175,7 @@
                                    <select id="barang" class="js-states form-control" style="width: 100%" name="kode_barang">
                                     <option value=""></option>
                                    @foreach ($barang as $item)
-                                       <option value="{{ $item->kode_barang }}">{{ $item->nama_barang }}</option>
+                                       <option value="{{ $item->kode_barang }}">{{ $item->nama_barang }} | {{ $item->satuan }}</option>
                                    @endforeach
                                     </select>
                                 </div>
@@ -176,7 +186,8 @@
 
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-sm btn-outline-template">
+             
+                <button type="submit" class="btn btn-sm btn-outline-template sendButton">
                     <i class="material-icons">note_add</i> Tambah Data
                 </button>
                 <button type="button" class="btn btn-sm btn-outline-template ml-3" data-dismiss="modal">
@@ -216,9 +227,12 @@
 </div>
 {{-- last modal riwayat --}}
 
+
+
 @endsection
 
 @push('js-second')
+
 <script>
       $('.btn-riwayat').on('click', function() {
             // console.log($(this).data('id'))
@@ -273,6 +287,11 @@
 
                         nilai +='<td class="harga" style="width:250px;">';
                         nilai +='<input type="number" class="form-control" name="harga[]" value="'+data.data.harga+'" style="height:28px"></input>';
+                        nilai +='</td>';
+
+                        nilai +='<td class="text-center" style="width:120px;">';
+                        nilai +=data.data.stock;
+                        nilai +='<input type="hidden" class="form-control" name="stock[]" value="'+data.data.stock+'" style="height:28px;"></input>';
                         nilai +='</td>';
 
 
@@ -352,6 +371,14 @@
     $("#customer").select2({
         placeholder: "Cari Customer",
         allowClear: true
+    });
+    $('.sendButton').attr('disabled',true);
+    $('#customer').on('select2:select', function (e){
+        console.log('select event');
+        if($(this).val().length !=0)
+            $('.sendButton').attr('disabled', false);            
+        else
+            $('.sendButton').attr('disabled',true);
     });
 </script>
 

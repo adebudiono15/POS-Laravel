@@ -19,7 +19,9 @@ class PenjualanController extends Controller
         $satuan = Satuan::get();
         $penjualan = Penjualan::get();
         $penjualan_line = penjualanLine::get();
-        $kode = rand();
+        $firstInvoiceID = Penjualan::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
 
         return view('admin.master.penjualan.index', compact('customer', 'barang','penjualan','penjualan_line','kode','satuan'));
     }
@@ -54,6 +56,7 @@ class PenjualanController extends Controller
             $qty = $request->qty;
             $harga = $request->harga;
             $stock = $request->stock;
+            $kode = $request->no_struk;
 
             foreach ($qty as $e => $qt) {
                 if ($qty[$e] > $stock[$e]) {
@@ -63,9 +66,9 @@ class PenjualanController extends Controller
             }
            
 
-            \DB::transaction(function () use ($nama, $qty, $harga, $nama_customer, $satuan_id, $alamat, $telepon, $kode_customer,$stock) {
+            \DB::transaction(function () use ($nama, $qty, $harga, $nama_customer, $satuan_id, $alamat, $telepon, $kode_customer,$stock,$kode) {
                 $header = Penjualan::insertGetId([
-                    'no_struk' => rand(),
+                    'no_struk' => $kode,
                     'nama_customer' => $nama_customer,
                     'alamat' => $alamat,
                     'telepon' => $telepon,

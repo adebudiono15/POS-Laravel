@@ -41,7 +41,7 @@
                     <tr>
                         <td hidden>{{ $item->id }}</td>
                         <td class="text-center">{{ date('d M Y', strtotime ($item->created_at)) }}</td>
-                        <td>DP{{ date('dmYHis', strtotime ($item->created_at)) }}</td>
+                        <td>DP{{ $item->no_struk }}</td>
                         <td>{{ $item->nama_supplier->nama_supplier }}</td>
                         <td class="text-right">Rp. {{  number_format($item->grand_total,0) }}</td>
                         <td>

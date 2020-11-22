@@ -18,7 +18,9 @@ class PembelianController extends Controller
         $barang = Barang::get();
         $satuan = Satuan::get();
         $pembelian = Pembelian::WithCount('lines')->orderBy('created_at', 'desc')->get();
-        $kode = rand();
+        $firstInvoiceID = Pembelian::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         
         return view('admin.master.pembelian.index', compact('supplier', 'barang','pembelian','kode','satuan'));
     }
@@ -27,7 +29,9 @@ class PembelianController extends Controller
         $supplier = Supplier::get();
         $satuan = Satuan::get();
         $pembelian = Pembelian::get();
-        $kode = rand();
+        $firstInvoiceID = Pembelian::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         
         return view('admin.master.pembelian.pembelian', compact('supplier','pembelian','kode','satuan'));
     }
@@ -35,7 +39,9 @@ class PembelianController extends Controller
     public function get_barang($kode_Supplier){
         $supplier = Supplier::get();
         $satuan = Satuan::get();
-        $kode = rand();
+        $firstInvoiceID = Pembelian::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         $barang = Barang::where('nama_supplier_id', $kode_Supplier)->get();
         
         return view('admin.master.pembelian.pembelian', compact('supplier', 'barang','kode','satuan','kode_Supplier'));

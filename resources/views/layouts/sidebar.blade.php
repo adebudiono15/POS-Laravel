@@ -4,7 +4,7 @@
 <div class="sidebar">
     <!-- Logo sidebar -->
     <div class="logo text-center">
-        <img src="{{ url('assets/img/logo-putih.png') }}" alt="" width="70" height="70" class="logo-icon">
+        <img src="{{ url('assets/img/logo-putih.png') }}" alt="" width="50" height="50" class="logo-icon">
     </div>
     <!-- Logo sidebar ends -->
 

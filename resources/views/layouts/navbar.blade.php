@@ -11,7 +11,7 @@
                   
 
                         <!-- large desktop market rates starts -->
-                        <div class="mx-auto d-none d-xxl-inline">
+                        {{-- <div class="mx-auto d-none d-xxl-inline">
                             <div class="row mx-0">
                                 <div class="col-auto pr-0 align-self-center"><i class="material-icons vm">public</i></div>
                                 <div class="col-auto">
@@ -23,7 +23,7 @@
                                     <p class="fs11"><span>Live</span> <span class="text-success">+0.1%</span> <span>(2487 $)</span></p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- large desktop market rates ends -->
 
                         <!-- icons dropwdowns starts -->
@@ -47,7 +47,7 @@
                                         @foreach ($minimal_stock as $item)
                                         <div class="col">
                                         <div class="row ">
-                                            <p>Stock <b>{{ $item->nama_barang }}</b> tersisa {{ $item->stock }} lagi.</p>
+                                            <p>Stock <b>{{ $item->nama_barang }}</b> tersisa {{ $item->stock }}</p>
                                         </div>
                                         </div>
                                         @endforeach
@@ -100,7 +100,7 @@
                             <li class="nav-item dropdown ml-0 ml-sm-4">
                                 <a class="nav-link dropdown-toggle profile-link" href="#" id="navbarDropdown6" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <figure class="rounded avatar avatar-30">
-                                        <img src="../assets/img/user1.png" alt="">
+                                        <img src="../assets/img/logo-hijau.jpeg" alt="">
                                     </figure>
                                     <div class="username-text ml-2 mr-2 d-none d-lg-inline-block">
                                         <h6 class="username"><span>Welcome,</span>Admin</h6>
@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mb-3 top-60 z-2">
-                                        <figure class="avatar avatar-120 mx-auto shadow"><img src="../assets/img/user1.png" alt=""></figure>
+                                        <figure class="avatar avatar-120 mx-auto shadow"><img src="../assets/img/logo-hijau.jpeg" alt=""></figure>
                                     </div>
                                     <h5 class="text-center mb-0">Admin</h5>
                                     <a class="dropdown-item border-top" href="#">

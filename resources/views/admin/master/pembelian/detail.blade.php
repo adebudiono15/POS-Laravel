@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'DP'.$title)
+@section('title', 'DP'.$inv)
 
 @section('content')
 <div class="container main-container" id="main-container">
@@ -9,10 +9,10 @@
         <div class="card-header border-1 py-4" style="color: rgb(51, 51, 51)">
                 <div class="row">
                         <div class="col font-weight-bold"><h4></h4>
-                            <img src="{{ url('assets/img/newlogo.png') }}" height="100" alt="">
+                            <img src="{{ url('assets/img/newlogo.png') }}" height="70" alt="">
                         </div>
                     <div class="col text-right">
-                        <br> Faktur Id: <b>{{ $title }}</b>
+                        {{-- <br> Faktur Id: <b>{{ $title }}</b> --}}
                         <br>Tanggal Transaksi : {{ date('d M Y ', strtotime ($pembelian->created_at)) }}
                     </div>
                 </div>
@@ -27,8 +27,8 @@
                     </div>
                 </div>
             
-                <h3 class="text-center mb-4">DETAIL PEMBELIAN</h3>
-                <table class="table table-borderless mb-0">
+                <h6 class="text-center mb-4">DETAIL PEMBELIAN</h6>
+                <table class="table table-borderless mb-0" style="font-size: 12px">
                     <thead>
                         <tr class="bg-light-secondary">
                             <th style="color: rgb(51, 51, 51)"><b>NAMA</b></th>
@@ -68,6 +68,9 @@
 </div>
 
 <div class="card-footer border-top">
+    <a href="{{ route('pembelian') }}">
+        <button class="btn btn-warning btn-sm"><i class="material-icons ml-2">keyboard_backspace</i>Kembali</button>
+    </a>
     <button onclick="printContent('print')" class="btn btn-primary btn-sm"><i class="material-icons mr-2">print</i>Print</button>
 </div>
 @endsection

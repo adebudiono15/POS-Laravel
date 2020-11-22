@@ -43,7 +43,7 @@
                     <tr>
                         <td hidden>{{ $item->id }}</td>
                         <td class="text-center">{{ date('d M Y', strtotime ($item->created_at)) }}</td>
-                        <td>DP{{ date('dmYHis', strtotime ($item->created_at)) }}</td>
+                        <td>DP{{ $item->no_struk }}</td>
                         <td>{{ $item->nama_supplier->nama_supplier }}</td>
                         <td class="text-right">Rp. {{  number_format($item->grand_total,0) }}</td>
                         @if ($item->sisa > 1)
@@ -64,6 +64,8 @@
                                     <i class="material-icons">more_horiz</i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+
+                                    <a class="dropdown-item btn-riwayat" data-id="{{ $item->id }}" href="#">Riwayat</a>
 
                                     <a class="dropdown-item btn-edit" data-id="{{ $item->id }}" href="{{ url('transaksi-pembelian-kredit/'.$item->id) }}">Detail</a>
 
@@ -86,9 +88,54 @@
     </div>
 </div>
 
+{{-- modal riwayat --}}
+<div id="riwayatModals" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 10px !important">
+          <div class="card border-0 shadow-sm">
+              <div class="card-body">
+                  <div class="row ">
+                      <div class="col-lg-12 col-md-12 text-center">
+                          <p class="mt-3 mb-1 text-white"><b>RIWAYAT PEMBAYARAN</b></p>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="modal-body">
+
+                  </div>
+              <div class="card-footer">
+                  <button type="button" class="btn btn-sm btn-outline-template ml-3 float-right" data-dismiss="modal">
+                      <i class="material-icons">not_interested</i> Tutup
+                  </button>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>
+{{-- last modal riwayat --}}
+
 @endsection
 
 @push('js-second')
+
+<script>
+    $('.btn-riwayat').on('click', function() {
+          // console.log($(this).data('id'))
+          let id = $(this).data('id')
+          $.ajax({
+              url: `/${id}/riwayat-pembayaran-pembelian`,
+              method: "GET",
+              success: function(data) {
+                  // console.log(data)
+                  $('#riwayatModals').find('.modal-body').html(data)
+                  $('#riwayatModals').modal('show')
+              },
+              error: function(error) {
+                  console.log(error)
+              }
+          })
+      })
+</script>
 <script>
     'use strict'
     $(document).ready(function() {

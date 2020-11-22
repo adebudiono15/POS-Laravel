@@ -78,4 +78,10 @@ Route::post('simpan-pembelian-kredit', 'PembelianKreditController@save')->name('
 Route::get('transaksi-pembelian-kredit/{id}', 'PembelianKreditController@detail');
 Route::put('transaksi-pembelian-kredit/{id}', 'PembelianKreditController@update');
 Route::delete('pembelian-kredit/{id}', 'PembelianKreditController@delete')->name('delete-pembelian-kredit');
+Route::get('{id}/riwayat-pembayaran-pembelian', 'PembelianKreditController@riwayatpembelian')->name('riwayat-pembayaran-pembelian');
 
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

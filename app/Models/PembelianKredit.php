@@ -20,5 +20,9 @@ class PembelianKredit extends Model
     {
         return $this->hasMany('App\Models\PembelianKreditLine','pembelian_kredit');
     }
+
+    public function riwayat(){
+        return $this->hasMany('App\Models\HistoryPembayaranPembelian','pembelian_kredit');
+     }
    
 }

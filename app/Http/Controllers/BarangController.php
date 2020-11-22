@@ -34,7 +34,9 @@ class BarangController extends Controller
         $satuan = Satuan::all();
         $kategori = Kategori::all();
         $supplier = Supplier::all();
-        $kode = rand(001, 999);
+        $firstInvoiceID = Barang::count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
 
         return view ('admin.master.barang.index', compact('barang','kode', 'satuan','kategori','supplier'));
     }

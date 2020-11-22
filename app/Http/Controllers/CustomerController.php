@@ -25,7 +25,9 @@ class CustomerController extends Controller
 
     public function index(){
         $customer = Customer::get();
-        $kode = rand(001, 999);
+        $firstInvoiceID = Customer::count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         return view ('admin.master.customer.index', compact('customer','kode'));
     }
 

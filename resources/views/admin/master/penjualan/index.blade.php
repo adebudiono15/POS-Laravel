@@ -39,7 +39,7 @@
                     <tr>
                         <td hidden>{{ $item->id }}</td>
                         <td class="text-center">{{ date('d M Y', strtotime ($item->created_at)) }}</td>
-                        <td>DF{{ date('dmYHis', strtotime ($item->created_at)) }}</td>
+                        <td>DF{{ $item->no_struk }}</td>
                         <td>{{ $item->nama_customer }}</td>
                         <td class="text-right">Rp. {{ number_format($item->grand_total,0) }}</td>
                         <td>
@@ -87,7 +87,7 @@
                 @csrf
                
                 <div class="row ">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label for="nama_customer" @error('nama_customer') class="text-danger" @enderror>Customer @error('nama_customer')
                                 | {{ $message }}
@@ -106,7 +106,16 @@
                             </tr>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
+                        <div class="row" style="margin-top: 24px">
+                            <a href="{{ route('customer') }}">
+                                <button type="button" class="btn btn-sm btn-outline-template">
+                                    <i class="material-icons">note_add</i> Tambah Customer
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="no_struk" 
                                 @error('no_struk') class="text-danger" 

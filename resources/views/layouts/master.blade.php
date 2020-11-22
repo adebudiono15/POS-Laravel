@@ -76,9 +76,9 @@
     <!-- wrapper ends -->
 
     <!-- Theme style picker modal window and options -->
-    <div class="wrap-fixed-float wrap-fixed-bottom-right">
+    {{-- <div class="wrap-fixed-float wrap-fixed-bottom-right">
         <button class="btn btn-primary btn-rounded-circle shadow" data-target="#themepicker" data-toggle="modal"><i class="material-icons vm">style</i><span class="counter-small bg-danger"></span></button>
-    </div>
+    </div> --}}
     <!-- Modal -->
     <div class="modal fade" id="themepicker" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

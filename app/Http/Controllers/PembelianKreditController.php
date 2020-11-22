@@ -20,7 +20,9 @@ class PembelianKreditController extends Controller
         $barang = Barang::get();
         $satuan = Satuan::get();
         $pembelian_kredit = PembelianKredit::get();
-        $kode = rand();
+        $firstInvoiceID = PembelianKredit::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         
         return view('admin.master.pembeliankredit.index', compact('supplier', 'barang','pembelian_kredit','kode','satuan'));
     }
@@ -29,7 +31,10 @@ class PembelianKreditController extends Controller
         $supplier = Supplier::get();
         $satuan = Satuan::get();
         $pembelian = Pembelian::get();
-        $kode = rand();
+        
+        $firstInvoiceID = PembelianKredit::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         
         return view('admin.master.pembeliankredit.pembelian', compact('supplier','pembelian','kode','satuan'));
     }
@@ -46,7 +51,9 @@ class PembelianKreditController extends Controller
     public function get_barang($kode_Supplier){
         $supplier = Supplier::get();
         $satuan = Satuan::get();
-        $kode = rand();
+        $firstInvoiceID = PembelianKredit::whereDay('created_at', date('d'))->count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
         $barang = Barang::where('nama_supplier_id', $kode_Supplier)->get();
         
         return view('admin.master.pembeliankredit.pembelian', compact('supplier', 'barang','kode','satuan','kode_Supplier'));
@@ -122,9 +129,11 @@ class PembelianKreditController extends Controller
         try{
 
             $total_sisa = $request->total_sisa;
-            $bayar = $request->bayar;
             $id_pembelian = $request->id_pembelian;
             $no_struk = $request->no_struk;
+
+            $bayar = $request->bayar;
+            $bayar = str_replace(["." , "Rp", " "], '', $bayar);
            
            $data['sisa'] = $total_sisa - $bayar;
            if ($bayar > $total_sisa) {
@@ -134,7 +143,7 @@ class PembelianKreditController extends Controller
                 PembelianKredit::where('id', $id_pembelian)->update($data);
 
                 HistoryPembayaranPembelian::insert([
-                    'pembayaran' =>$no_struk,
+                    'pembelian_kredit' =>$id_pembelian,
                     'total_pembayaran' =>  $bayar,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
@@ -156,5 +165,12 @@ class PembelianKreditController extends Controller
     DB::table('pembelian_kredit')->where('id', $id)->delete();
     Session::flash('delete');
     return redirect()->back();
+    }
+
+    public function riwayatpembelian($id)
+    {
+        $pembelian_kredit = PembelianKredit::find($id);
+
+        return view('admin.master.pembeliankredit.riwayat', compact('pembelian_kredit'));
     }
 }

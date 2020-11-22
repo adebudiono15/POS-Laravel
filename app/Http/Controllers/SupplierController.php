@@ -25,7 +25,9 @@ class SupplierController extends Controller
 
     public function index(){
         $supplier = Supplier::get();
-        $kode = rand(001, 999);
+        $firstInvoiceID = Supplier::count('id');
+        $secondInvoiceID = $firstInvoiceID + 1;
+        $kode = sprintf("%05d", $secondInvoiceID);
 
         return view('admin.master.supplier.index', compact('supplier','kode'));
     }
